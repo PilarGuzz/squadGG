@@ -6,6 +6,9 @@ const routes: Routes = [
 
   { path:'',
     children: [
+      { path: '',
+      component: GamesComponent
+      },
       { path: ':name/posts',
       component: GamesComponent
       }

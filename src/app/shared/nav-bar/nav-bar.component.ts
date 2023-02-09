@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
+  games! : string[];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.games = ['Valorant', 'Fortnite', 'Fifa'] 
   }
 
 }

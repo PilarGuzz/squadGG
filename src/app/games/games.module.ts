@@ -4,6 +4,7 @@ import { GamesComponent } from './games.component';
 import { CommentsComponent } from './comments/comments.component';
 import { CommentComponent } from './comments/comment/comment.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { GamesRoutingModule } from './games-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     SideBarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    GamesRoutingModule
   ]
 })
 export class GamesModule { }

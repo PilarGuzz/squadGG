@@ -1,17 +1,33 @@
 .fondo{
     /* The image used */
     background-image: url('../assets/img/space.jpg') ;
-              /* Full height */
-              height: 100%;
-              /* Center and scale the image nicely */
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-  -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-  
-          }
+
+
+ /* Fijar la imagen de fondo este vertical y
+   horizontalmente y centrado */
+ background-position: center center;
+
+ /* Esta imagen no debe de repetirse */
+ background-repeat: no-repeat;
+
+ /* COn esta regla fijamos la imagen en la pantalla. */
+ background-attachment: fixed;
+
+ /* La imagen ocupa el 100% y se reescala */
+ background-size: cover;
+
+ /* Damos un color de fondo mientras la imagen está cargando  */
+ background-color: #464646;
+ height: 100vh;
+
+ background: url('../assets/img/space.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 1024px;
+	
+
+}
     
