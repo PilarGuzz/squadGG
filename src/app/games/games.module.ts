@@ -5,6 +5,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { CommentComponent } from './comments/comment/comment.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { GamesRoutingModule } from './games-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { GamesRoutingModule } from './games-routing.module';
   ],
   imports: [
     CommonModule,
-    GamesRoutingModule
+    GamesRoutingModule,
+    RouterModule
   ]
 })
 export class GamesModule { }

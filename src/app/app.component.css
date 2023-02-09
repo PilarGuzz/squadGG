@@ -18,7 +18,7 @@
 
  /* Damos un color de fondo mientras la imagen está cargando  */
  background-color: #464646;
- height: 100vh;
+
 
  background: url('../assets/img/space.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
