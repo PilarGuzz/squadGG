@@ -1,7 +1,6 @@
 section{
-    height: 100vh;
     display: flex;
-
+    height: 90vh;
 
 }
 
@@ -11,7 +10,7 @@ flex-grow: 1;
 object-fit: cover;
 opacity: .8;
 filter: brightness(50%);
-transition: .5s ease;
+transition: .8s ease;
 }
 
 section img:hover{

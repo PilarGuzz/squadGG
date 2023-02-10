@@ -1,5 +1,5 @@
 .card2 {
-  width: 35%;
+  width: 100%;
   height: 254px;
   border-radius: 20px;
   padding: 5px;
@@ -21,3 +21,24 @@
    text-align: center;
    padding-top: 50px;
  }
+
+
+ .grid-contenedor {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr 2fr 0.5fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 50px;
+  grid-template-areas: 
+    ". . . . ."
+    ". texto . texto2 ."
+    " . . . . .";
+}
+.texto{
+  display: grid;
+  grid-area: texto;
+
+}
+.texto2{
+  display: grid;
+  grid-area: texto2;
+}
