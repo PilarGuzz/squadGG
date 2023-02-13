@@ -26,12 +26,11 @@
  .grid-contenedor {
   display: grid;
   grid-template-columns: 0.5fr 2fr 0.5fr 2fr 0.5fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 0.8fr 1fr;
   grid-gap: 50px;
   grid-template-areas: 
     ". . . . ."
-    ". texto . texto2 ."
-    " . . . . .";
+    ". texto . texto2 .";
 }
 .texto{
   display: grid;
