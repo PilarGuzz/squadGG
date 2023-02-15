@@ -1,36 +1,46 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <!-- Navbar content -->
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/assets/img/Squad.gg-removebg-preview-removebg-preview-removebg-preview.png" height="90px"/></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/assets/img/Squad.gg-removebg-preview-removebg-preview-removebg-preview.png" height="80px"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+          <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " role="button" 
+              <a class="nav-link " role="button" 
                 [routerLink]="['/game/']">
                   Games
                 </a>
-              </li>
-            
+            </li>
           </ul>
 
-          <a [routerLink]="['/auth/registrer']">
-          <button >
-            <span>Registrate</span> 
-          </button>
-          </a>
-          &nbsp 
-
-          <a [routerLink]="['/auth/login']">
-          <button>
-            <span>Login</span> 
-          </button>
-        </a>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" [routerLink]="['/auth/registrer']">
+                <button>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span> Registrate
+                </button>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/auth/login']" href="#"><button>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span> Login
+              </button></a>
+            </li>
+          </ul>
         </div>
       </div>
-  </nav>
+    </nav>
