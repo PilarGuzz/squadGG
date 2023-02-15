@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit  {
 
-  games! : string[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.games = ['Valorant', 'Fortnite', 'Fifa'] 
   }
+
 
 }
