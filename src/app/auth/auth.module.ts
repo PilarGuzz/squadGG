@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     AuthRoutingModule,
     RouterModule
+
   ],
   exports:[
     RegistrerComponent,

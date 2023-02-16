@@ -21,9 +21,10 @@
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
               <h2>Login</h2>
-              <form (ngSubmit)="onSubmit()"
+              <form 
               #myForm="ngForm"
               autocomplete="off"
+              (ngSubmit)="onlogin()" 
               >
              
   
@@ -55,7 +56,8 @@
     
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block mb-4"
-                [disabled]="myForm.invalid">
+                [disabled]="myForm.invalid"
+                >
                   Entrar
                 </button>
   

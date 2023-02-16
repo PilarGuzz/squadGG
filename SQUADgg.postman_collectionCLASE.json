@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "0d569f85-af34-4337-b717-eef3623ef4c9",
+		"name": "SQUADgg",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER Y AUTH",
+			"item": [
+				{
+					"name": "token user valido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"pilar\",\n    \"password\": \"pilar\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one user con token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEyNzY4OSwicm9sZSI6IlVTRVJfUk9MRSIsImVtYWlsIjoicGlsYXJAZ21haWwuY29tIn0.sAbfJP9mxp2JdBIgxPXN2TfFTYt0WOTW73z6YtTHWO5uD9DYagZDCGxE29EAMHL6",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"pilar\",\n    \"password\": \"pilar\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/users/pilar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"pilar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit one user con token",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEyNzY4OSwicm9sZSI6IlVTRVJfUk9MRSIsImVtYWlsIjoicGlsYXJAZ21haWwuY29tIn0.sAbfJP9mxp2JdBIgxPXN2TfFTYt0WOTW73z6YtTHWO5uD9DYagZDCGxE29EAMHL6",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"username\": \"prueba\",\n    \"password\": \"$2a$10$sQ2T/0rRIa.Ni1QALtPlOed1QeuUUbrvefsfpVlFrxLBzP0U1kNwK\",\n    \"email\": \"prueba2@gmail.com\",\n    \"birth\": [\n        1998,\n        10,\n        28\n    ],\n    \"img\": \"img cambiada\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8081/users/prueba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"prueba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registro user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"username\": \"prueba\",\n    \"password\": \"prueba\",\n    \"email\": \"prueba2@gmail.com\",\n    \"birth\": [\n        1998,\n        10,\n        28\n    ],\n    \"img\": \"img cambiada\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8081/registrer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"registrer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one user sin token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEyNzY4OSwicm9sZSI6IlVTRVJfUk9MRSIsImVtYWlsIjoicGlsYXJAZ21haWwuY29tIn0.sAbfJP9mxp2JdBIgxPXN2TfFTYt0WOTW73z6YtTHWO5uD9DYagZDCGxE29EAMHL6",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"pilar\",\n    \"password\": \"pilar\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/users/pilar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"pilar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BORRAR UNO",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEyNzY4OSwicm9sZSI6IlVTRVJfUk9MRSIsImVtYWlsIjoicGlsYXJAZ21haWwuY29tIn0.sAbfJP9mxp2JdBIgxPXN2TfFTYt0WOTW73z6YtTHWO5uD9DYagZDCGxE29EAMHL6",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/users/prueba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"prueba"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GAME",
+			"item": [
+				{
+					"name": "todos los games sin token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEyNzY4OSwicm9sZSI6IlVTRVJfUk9MRSIsImVtYWlsIjoicGlsYXJAZ21haWwuY29tIn0.sAbfJP9mxp2JdBIgxPXN2TfFTYt0WOTW73z6YtTHWO5uD9DYagZDCGxE29EAMHL6",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"pilar\",\n    \"password\": \"pilar\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one juego",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEyNzY4OSwicm9sZSI6IlVTRVJfUk9MRSIsImVtYWlsIjoicGlsYXJAZ21haWwuY29tIn0.sAbfJP9mxp2JdBIgxPXN2TfFTYt0WOTW73z6YtTHWO5uD9DYagZDCGxE29EAMHL6",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"pilar\",\n    \"password\": \"pilar\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/games/FIFA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"games",
+								"FIFA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar un juego",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEzMjE4OSwicm9sZSI6IkFETUlOX1JPTEUiLCJlbWFpbCI6InBpbGFyQGdtYWlsLmNvbSJ9.F3GlmLg2iR73OkjjJOGabU9g1yATdAXSPORbjzjcoFghJFlS_aEvVvfYMBSY2hM0",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"gamename\": \"FIFA\",\n    \"img\":\"https://res.cloudinary.com/dytuy1vx0/image/upload/v1675962085/fifa_fencjn.jpg\"\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/games/FIFA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"games",
+								"FIFA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear un juego",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEzMjE4OSwicm9sZSI6IkFETUlOX1JPTEUiLCJlbWFpbCI6InBpbGFyQGdtYWlsLmNvbSJ9.F3GlmLg2iR73OkjjJOGabU9g1yATdAXSPORbjzjcoFghJFlS_aEvVvfYMBSY2hM0",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"gamename\": \"funcionando\"\n\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear un juego Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaWxhciIsImV4cCI6MTY3OTEzMjE4OSwicm9sZSI6IkFETUlOX1JPTEUiLCJlbWFpbCI6InBpbGFyQGdtYWlsLmNvbSJ9.F3GlmLg2iR73OkjjJOGabU9g1yATdAXSPORbjzjcoFghJFlS_aEvVvfYMBSY2hM0",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"gamename\": \"funcionando\"\n\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/games/funcionando",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"games",
+								"funcionando"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
