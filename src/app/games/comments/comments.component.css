@@ -1,0 +1,10 @@
+.cabecera{
+    height: 20%;
+
+}
+    
+.juego{
+    object-fit: cover;
+  width:100%;
+  height:100%;
+}

@@ -1,5 +1,11 @@
 
 <section>
+    <img
+    *ngFor="let game of games" 
+     src="{{game.img}}"
+    [routerLink]="['/game/{{game.gamename}}/posts']"alt="">
+
+
     <img src="https://res.cloudinary.com/dytuy1vx0/image/upload/v1675960940/Beta_Key_Art_VALORANT_cenmpj.jpg" 
     [routerLink]="['/game/Valorant/posts']"alt="">
     <img src="https://res.cloudinary.com/dytuy1vx0/image/upload/v1675962085/lol_uf1vtj.jpg" alt="">
