@@ -15,8 +15,7 @@ export class UserService {
 
   getUsers():Observable<User[]>{
     const jwt = localStorage.getItem('jwt');
-  //  const httpOptions = {
-  //     headers: new HttpHeaders({ 'Authorization': 'Bearer ' + jwt  })};
+
     return this.http.get<User[]>(this.URL)
   }
 
@@ -26,5 +25,6 @@ export class UserService {
     //   headers: new HttpHeaders({ 'Authorization': 'Bearer ' + jwt  })};
     return this.http.get<User>(this.URL+`/${id}`)
   }
+
 
 }
