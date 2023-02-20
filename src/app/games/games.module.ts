@@ -6,6 +6,8 @@ import { CommentComponent } from './comments/comment/comment.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { GamesRoutingModule } from './games-routing.module';
 import { RouterModule } from '@angular/router';
+import { AddGameComponent } from './add-game/add-game.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,10 +16,12 @@ import { RouterModule } from '@angular/router';
     GamesComponent,
     CommentsComponent,
     CommentComponent,
-    SideBarComponent
+    SideBarComponent,
+    AddGameComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     GamesRoutingModule,
     RouterModule
   ]

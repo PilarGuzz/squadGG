@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.myForm.value.username, this.myForm.value.password)
     .subscribe({
       next: (resp) =>{
-        console.log(resp);
         this.isLoggedIn= true;
         if (resp) this.router.navigate(['/game']);
           else {

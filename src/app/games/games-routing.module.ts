@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddGameComponent } from './add-game/add-game.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GamesComponent } from './games.component';
 
@@ -12,6 +13,9 @@ const routes: Routes = [
       },
       { path: ':name/posts',
       component: CommentsComponent
+      },
+      { path: 'add',
+      component: AddGameComponent
       }
 
   ]}

@@ -19,9 +19,15 @@
                   Games
                 </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link " role="button" 
+                [routerLink]="['/game/add']">
+                  Añadir juego
+                </a>
+            </li>
           </ul>
 
-          <ul class="navbar-nav">
+          <ul class="navbar-nav" *ngIf="!logged">
             <li class="nav-item">
               <a class="nav-link" href="#" [routerLink]="['/auth/registrer']">
                 <button>
@@ -39,6 +45,29 @@
                 <span></span>
                 <span></span>
                 <span></span> Login
+              </button></a>
+            </li>
+          </ul>
+
+
+          <ul class="navbar-nav" *ngIf="logged">
+            <li class="nav-item">
+              <a class="nav-link" href="#" [routerLink]="['/profile/:username']">
+                <button>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span> Perfil
+                </button>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="onlogOut()" [routerLink]="['/']" href="#">
+                <button >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span> Cerrar Sesión
               </button></a>
             </li>
           </ul>

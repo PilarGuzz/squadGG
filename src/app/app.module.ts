@@ -7,12 +7,13 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { GamesModule } from './games/games.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AddGameComponent } from './games/add-game/add-game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

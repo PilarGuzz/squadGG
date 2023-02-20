@@ -1,4 +1,5 @@
 import {  Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,11 +8,19 @@ import {  Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class NavBarComponent implements OnInit  {
 
-
-  constructor() { }
-
+logged! : boolean;
+  constructor(private authService:  AuthService) { }
+  
   ngOnInit(): void {
+    this.logged = this.authService.isAuthenticated();
   }
+
+
+  onlogOut():void {
+    this.authService.logout();
+    this.logged=false;
+  }
+
 
 
 }

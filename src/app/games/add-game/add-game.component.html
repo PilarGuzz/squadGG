@@ -1,0 +1,60 @@
+<div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+
+
+        <div class="col-lg-8 mb-5 mb-lg-0 position-relative">
+            <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+            <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+            <div class="card bg-glass">
+                <div class="card-body px-4 py-5 px-md-5">
+                    <h2>Añadir juego nuevo</h2>
+                    <form #myForm="ngForm" autocomplete="off" (ngSubmit)="save()">
+                        
+                        <!-- ----------- Campo de username ---------------- -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Nombre del Juego</label>
+
+                            <input type="text" class="form-control" placeholder="your username"
+                            name="gamename" 
+                            required 
+                            [(ngModel)]="gamename">
+
+                            <span class="form-text text-danger" *ngIf="notValidGamename()">
+                                No es un nombre valido
+                            </span>
+
+                        </div>
+                      
+
+                        <!-- ---------------------- Campo de repeat password -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Imagen</label>
+                            <input type="file" class="form-control" 
+                            name="username" 
+                            required 
+                            [(ngModel)]="img">
+                            <span class="form-text text-danger" *ngIf="notValidImg()">
+                                No es una imagen valida
+                            </span>
+                        </div>
+
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="myForm.invalid">
+                            Entrar
+                        </button>
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <p>Si no tienes una cuenta puedes <a [routerLink]="['/auth/registrer']">registrarte</a></p>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

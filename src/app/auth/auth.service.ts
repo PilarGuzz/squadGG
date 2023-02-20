@@ -23,7 +23,6 @@ export class AuthService {
   login(username: string, password: string): Observable<boolean> {
     return this.http.post<Token>(this.urllogin, { 'username': username, 'password': password }, this.httpOptions)
       .pipe(switchMap(resp => {
-        console.log('login');
         localStorage.setItem("jwt", resp.token);
         localStorage.setItem("loggedIn", "true");
 
