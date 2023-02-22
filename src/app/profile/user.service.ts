@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../shared/interfaces/user.interface';
 
@@ -8,7 +8,7 @@ import { User } from '../shared/interfaces/user.interface';
 })
 export class UserService {
 
-  URL : string = 'http://localhost:8002/users'
+  URL : string = 'http://localhost:8001/users'
 
 
   constructor(private http: HttpClient) { }
@@ -19,10 +19,14 @@ export class UserService {
     return this.http.get<User[]>(this.URL)
   }
 
-  getUser(id:string):Observable<User>{
+  getUser(id:string |null):Observable<User>{
     const jwt = localStorage.getItem('jwt');
+    console.log(jwt);
+    
     // const httpOptions = {
-    //   headers: new HttpHeaders({ 'Authorization': 'Bearer ' + jwt  })};
+    //    headers: new HttpHeaders({ 'Authorization': 'Bearer ' + jwt  })};
+    // console.log(httpOptions);
+    
     return this.http.get<User>(this.URL+`/${id}`)
   }
 

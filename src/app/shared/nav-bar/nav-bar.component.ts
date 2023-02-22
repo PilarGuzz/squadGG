@@ -7,12 +7,24 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit  {
-
+username!: string | null;
 logged! : boolean;
+role: string |null ='';
   constructor(private authService:  AuthService) { }
   
   ngOnInit(): void {
-    this.logged = this.authService.isAuthenticated();
+    this.authService.isloggedIn.subscribe({
+      next: (resp) => {
+        this.logged=resp
+      }
+    })
+
+    this.authService.userRole.subscribe({
+      next: (resp) =>{
+        this.role = resp;
+      }
+    })
+   this.username = localStorage.getItem('user');
   }
 
 
@@ -20,6 +32,8 @@ logged! : boolean;
     this.authService.logout();
     this.logged=false;
   }
+
+  
 
 
 
