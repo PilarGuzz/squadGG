@@ -1,4 +1,4 @@
-import {  Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {  Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -24,13 +24,19 @@ role: string |null ='';
         this.role = resp;
       }
     })
-   this.username = localStorage.getItem('user');
+    this.username = localStorage.getItem('user');
+
   }
 
 
   onlogOut():void {
     this.authService.logout();
     this.logged=false;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.username = localStorage.getItem('user');
+ 
   }
 
   

@@ -8,7 +8,7 @@ import { User } from '../shared/interfaces/user.interface';
 })
 export class UserService {
 
-  URL : string = 'http://localhost:8001/users'
+  URL : string = 'http://localhost:8081/users'
 
 
   constructor(private http: HttpClient) { }
@@ -19,15 +19,16 @@ export class UserService {
     return this.http.get<User[]>(this.URL)
   }
 
-  getUser(id:string |null):Observable<User>{
-    const jwt = localStorage.getItem('jwt');
-    console.log(jwt);
+  getUser(username:string |null):Observable<User>{
+  /*   const jwt = localStorage.getItem('jwt');
+    console.log(jwt); */
     
     // const httpOptions = {
     //    headers: new HttpHeaders({ 'Authorization': 'Bearer ' + jwt  })};
     // console.log(httpOptions);
+    console.log(username);
     
-    return this.http.get<User>(this.URL+`/${id}`)
+    return this.http.get<User>(this.URL+'/'+username)
   }
 
 

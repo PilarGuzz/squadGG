@@ -9,6 +9,8 @@ import { GamesModule } from './games/games.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddGameComponent } from './games/add-game/add-game.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { RolGuard } from './guards/rol.guard';
+import { TokenGuard } from './guards/token.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
-  }],
+  }, RolGuard, TokenGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

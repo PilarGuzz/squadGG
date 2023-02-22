@@ -60,8 +60,6 @@ export class RegistrerComponent implements OnInit {
 
 
 
-
-
    ageValidator(minAge: number): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
       const birthday = new Date(control.value);

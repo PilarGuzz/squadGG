@@ -15,24 +15,24 @@ export class ProfileComponent implements OnInit {
   user!: User;
   token!: DecodeToken;
 
-  constructor(private userSrv : UserService, private authServ : AuthService) {
-
-   }
+  constructor(private userSrv : UserService, private authServ : AuthService) {}
 
   ngOnInit(): void {
     this.token = this.authServ.token;
-
-    this.userSrv.getUser(this.token.sub)
-    .subscribe({
-      next:us => this.user = us,
-      error: (error) => console.log(error)
-
-    })
-
     this.username = localStorage.getItem('user');
     console.log(this.username);
 
-    console.log(this.user);
+    this.userSrv.getUser(this.username)
+    .subscribe({
+      next:(resp) =>{
+        this.user = resp
+        console.log(resp);
+      } ,
+      error: (error) => console.log(error)
+      
+    })
+    
+
     
   }
 
