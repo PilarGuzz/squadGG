@@ -17,7 +17,7 @@ export class RolGuard implements CanActivate {
         res = true;
       }
       
-      return localStorage.getItem('role') ==='ADMIN_ROLE' && res;
+      return localStorage.getItem('role') ==='ADMIN_ROLE' || res;
   }
   
 }

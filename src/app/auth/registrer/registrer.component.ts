@@ -34,6 +34,7 @@ export class RegistrerComponent implements OnInit {
       email: '',
       birth: new Date(),
       password: '',
+      img:''
 
     };
   }
