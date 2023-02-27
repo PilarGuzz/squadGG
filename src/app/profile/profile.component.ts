@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.authServ.token;
     this.username = localStorage.getItem('user');
-    console.log(this.username);
 
     this.userSrv.getUser(this.username)
     .subscribe({

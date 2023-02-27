@@ -11,6 +11,7 @@ import { AddGameComponent } from './games/add-game/add-game.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RolGuard } from './guards/rol.guard';
 import { TokenGuard } from './guards/token.guard';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TokenGuard } from './guards/token.guard';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    GamesModule
+    GamesModule,
+    ProfileModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

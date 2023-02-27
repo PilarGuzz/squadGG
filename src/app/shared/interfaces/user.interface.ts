@@ -3,7 +3,8 @@ export interface User{
     email: string,
     password: string,
     birth: Date,
-    img: string
-
+    img: string,
+    discord: string,
+    acerca: string
     
 }
