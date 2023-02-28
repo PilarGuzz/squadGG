@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-principalprofile',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class PrincipalprofileComponent implements OnInit {
+  @Input() user!: User;
 
   constructor() { }
 

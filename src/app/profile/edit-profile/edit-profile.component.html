@@ -1,0 +1,87 @@
+<div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+
+
+        <div class="col-lg-8 mb-5 mb-lg-0 position-relative">
+            <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+            <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+            <div class="card bg-glass">
+                <div class="card-body px-4 py-5 px-md-5">
+                    <h2>Editar perfil</h2>
+                    <form [formGroup]="myForm" autocomplete="off" (ngSubmit)="onSubmit()">
+                        <!-- ----------- Campo de username ---------------- -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Username</label>
+
+                            <input type="text" class="form-control" placeholder="your username"
+                                formControlName="username" readonly>
+
+                            <span class="form-text text-danger" *ngIf="isValidField('username')">
+                                No es un username valido
+                            </span>
+
+                        </div>
+                        <!-- --------------- Campo de email -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="example@example.com"
+                                formControlName="email">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('email')">
+                                Debe ser un email correcto
+                            </span>
+                        </div>
+
+                        <!-- -------------------------Campo de fecha de nacimiento -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Fecha de nacimiento</label>
+
+
+                            <input type="date" class="form-control" formControlName="birth">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('birth')">
+                                Debe de ser mayor de 16
+                            </span>
+                        </div>
+
+
+                        <!-- -------------Campo  de password -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Contraseña</label>
+
+
+                            <input type="password" class="form-control" formControlName="password">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('password')">
+                                Debe contener mayusculas, minusculas y mínimo un número. <br>
+                                Su longitud debe ser de mínimo 6 caracteres.
+                            </span>
+                        </div>
+
+                        <!-- ---------------------- Campo de repeat password -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Repita la contraseña</label>
+                            <input type="password" class="form-control" formControlName="repeatpassword">
+                            <span class="form-text text-danger" *ngIf="isValidField('repeatpassword')">
+                                No coincide con la contraseña introducida
+                            </span>
+                        </div>
+
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="myForm.invalid">
+                            Editar
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

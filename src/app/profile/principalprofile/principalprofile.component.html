@@ -1,7 +1,10 @@
-<div class="row">
-        <div class="col">
-          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-            <h3>PROFILE</h3>
-          </nav>
-        </div>
+<div class="card mb-4">
+  <div class="card-body text-center">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+      class="rounded-circle img-fluid" style="width: 150px;">
+    <h5 class="my-3">{{user.username}}</h5>
+    <div class="d-flex justify-content-center mb-2">
+      <a [routerLink]="['edit']" routerLinkActive="router-link-active" ><button type="button" class="btn btn-primary">Editar</button></a>
+    </div>
+  </div>
 </div>

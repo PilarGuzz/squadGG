@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-data-profile',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class DataProfileComponent implements OnInit {
+  @Input() user!: User;
 
   constructor() { }
 

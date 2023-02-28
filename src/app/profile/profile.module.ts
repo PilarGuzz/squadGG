@@ -5,6 +5,9 @@ import { PrincipalprofileComponent } from './principalprofile/principalprofile.c
 import { DataProfileComponent } from './data-profile/data-profile.component';
 import { GameProfileComponent } from './game-profile/game-profile.component';
 import { ProfileComponent } from './profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,11 +16,15 @@ import { ProfileComponent } from './profile.component';
     PrincipalprofileComponent,
     DataProfileComponent,
     GameProfileComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditProfileComponent
     ],
   imports: [
     CommonModule,
-    ProfileRoutingModule    
+    ProfileRoutingModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ProfileComponent
