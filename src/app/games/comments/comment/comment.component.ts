@@ -18,7 +18,15 @@ export class CommentComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.postsList);
+
+
+  }
+
+  fecha(fechaStr: string) {
+    const fechaArr = fechaStr.split(',');
+    const fecha = new Date(Date.UTC(+fechaArr[0], +fechaArr[1] - 1, +fechaArr[2], +fechaArr[3], +fechaArr[4]));
+    return fecha;
+
 
   }
 

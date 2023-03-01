@@ -4,7 +4,11 @@ export interface Post{
     region: string,
     nickgame: string,
     levelingame: string,
+    ranklevel: string,
     username: string,
     gamename: string,
+    datepublication: number[],
+    dateformated: string,
+    img: string
     
   }

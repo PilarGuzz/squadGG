@@ -13,8 +13,8 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  postsList(page: number,size:number, game: string): Observable<Post[]>{
-      return this.http.get<Post[]>(`${this.URL}/${game}?pageNumber=${page}&pageSize=${size}`)
+  postsList(page: number,size:number, game: string): Observable<any>{
+      return this.http.get<Post[]>(`${this.URL}/${game}?pageNumber=${page}&sizeNumber=${size}`)
   }
 
 }
