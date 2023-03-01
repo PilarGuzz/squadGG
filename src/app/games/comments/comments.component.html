@@ -1,4 +1,4 @@
-<div class="cabecera"> 
+<div class="cabecera" *ngIf="ready"> 
     <img class="juego" src="{{game.img}}" alt="">
 </div>
 <div class="d-flex">
@@ -6,7 +6,7 @@
     <app-side-bar></app-side-bar>
     </div>
     <div class="col">
-    <app-comment></app-comment>
+    <app-comment [postsList]="postsList"></app-comment>
     </div>
 </div>
     

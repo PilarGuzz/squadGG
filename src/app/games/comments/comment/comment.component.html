@@ -1,11 +1,11 @@
 
 
-<div class="container py-1">
+<div class="container py-1" *ngFor="let comment of postsList">
 
 
   <div class="card ">
     <div class="card-header">
-      Featured
+      {{comment.title}}
     </div>
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
@@ -18,27 +18,4 @@
   </div>
        
 </div>
-
-
-
-<div class="container py-1">
-
-    <div class="card ">
-      <div class="card-header">
-        Horizontal Card with Carousel - Bootstrap 4 
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">
-            The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
-          </p>
-          <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
-          <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
-      </div>
-      
-      <div class="card-footer text-muted">
-        2 days ago
-      </div>
-    </div>
-
-  </div>   
+ 

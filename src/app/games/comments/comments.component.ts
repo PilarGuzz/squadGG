@@ -14,28 +14,32 @@ export class CommentsComponent implements OnInit {
 
   game!: Game;
   postsList!: Post[]
-  constructor(private gameService : GamesService, private route: ActivatedRoute, private commentserice:CommentService) { }
+  ready: boolean = false;
+
+  constructor(private gameService: GamesService, private route: ActivatedRoute, private commentserice: CommentService) { }
 
   ngOnInit(): void {
-    this.route.params
-    .subscribe({
-      next:(param) =>{
-        this.gameService.getGame(param['name'])
-        .subscribe({
-          next: resp => this.game = resp,
-          error: (error) => console.log(error)
-        })
-      },
-      error: (error) => console.log(error)
-    })
+    const gamename = this.route.snapshot.url[0].path
+
+    this.gameService.getGame(gamename)
+      .subscribe({
+        next: resp => {
+          this.game = resp
+          this.commentserice.postsList(1, 10, this.game.gamename)
+            .subscribe({
+              next: (resp) => {
+                this.postsList = resp;
+                this.ready = true;
+              }
+            })
+        },
+
+        error: (error) => console.log(error)
+      })
 
 
-    this.commentserice.postsList(1, 10, this.game.gamename)
-    .subscribe({
-      next:(resp)=> {
-        this.postsList = resp;
-      }
-    })
+      
+
   }
 
 }
