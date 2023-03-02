@@ -1,35 +1,70 @@
 
-<!-- <div class="row justify-content-evenly align-items-center text-light  grid-contenedor">
 
-    <div class="col-sm-4 texto card2"> 
-        <div class="card__content">
-        <p>blasd alsbd alsdbasd asfsdfsfsrgzsg aggrtgra
-        blasd alsbd alsdbasd asfsdfsfsrgzsg aggrtgra
-        blasd alsbd alsdbasd asfsdfsfsrgzsg aggrtgra
-        blasd alsbd alsdbasd asfsdfsfsrgzsg aggrtgra
-        blasd alsbd alsdbasd asfsdfsfsrgzsg aggrtgra</p> </div>
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="col-sm-3 texto2 card2">
-        <div class="card__content centro">
-        <p> Empieza a juagar con nuevos amigos,</p>
-
-        <p> <button class="button btn-light">Encuentralos!</button>
-        </p>
-        </div>
-    </div>
-
-</div> -->
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 text-container">
-          <h2>¡Bienvenidos a mi sitio web!</h2>
-          <p>Aquí podrás ver prçoximamente información sobre la web y lo que se podrá hacer en ella. <br> Esto e sun poco un texto de relleno, saludos!</p>
-        </div>
-        <div class="col-md-6 text-container">
-          <h2>¿Qué es SquadGG?</h2>
-          <p>Es un sitio web para encontrar compañeros de juegos, puedes seleccionar el juego y encontrar a tus compañeros perfectos o buscarlos tu mismo publicando un post con los datos necesarios</p>
+    <div class=" my-carousel carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../assets/img/playing1.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Nueva forma de hacer amigos</h5>
+          <p>Entra en el juego que te apasione y encuentra en los comentarios a tu equipo perfecto.</p>
         </div>
       </div>
-      
+      <div class="carousel-item">
+        <img src="../../assets/img/playing2.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Fácil de usar</h5>
+          <p>Solo tienes que ver el nombre de usuario y agregarlo directamente en el juego.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../assets/img/playing5.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>¡Ahora solo falta ganar!</h5>
+          <p>Disfruta de las partidas competitivas de tu juego favorito con gente de tu nivel o relajate echando unas partidas amistosas conociendo a gente</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
   </div>
+
+
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">Comunidad sólida</h5>
+        <p class="card-text">Más de 500 personas buscan a sus compañeros en nuestra aplicación, no te quedes solo y anímate a buscar a otros jugadores en tu situación</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">Empieza ya</h5>
+        <p class="card-text">Registrate y empieza a buscar a tus nuevos compañeros de equipo, es muy fácil y tardarás solo unos segundos.</p>
+        <a class="nav-link" href="#" [routerLink]="['/auth/registrer']">
+                <button>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span> Registrate 
+                </button>
+              </a>
+      </div>
+    </div>
+   
+  </div>
+
+
+ 
