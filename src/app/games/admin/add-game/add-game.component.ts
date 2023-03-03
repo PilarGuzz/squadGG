@@ -16,7 +16,7 @@ export class AddGameComponent implements OnInit {
 
   game!: Game;
   gamename!: string;
-  img!: string;
+  img?: File;
 
   constructor(private gameService: GamesService, private router: Router) { }
 
@@ -24,15 +24,15 @@ export class AddGameComponent implements OnInit {
   }
 
   save(): void{
-    this.game = {gamename: this.gamename, img: this.img}
-    this.gameService.addGame(this.game)
+    //this.game = {gamename: this.gamename, img: this.img}
+    this.gameService.addGame(this.gamename, this.img)
     .subscribe({
       next:(resp) => {
         console.log("respuesta")
         if (resp) this.router.navigate(['/game']);
         else {
           this.gamename="";
-          this.img="";
+          this.img= undefined;
           swalert.fire({
             icon: 'error',
             title: 'Oops...',
@@ -42,6 +42,10 @@ export class AddGameComponent implements OnInit {
         }
       }
     })
+  }
+
+  onFileSelected(event: any) {
+    this.img = event.target.files[0];
   }
 
   notValidGamename(): boolean{

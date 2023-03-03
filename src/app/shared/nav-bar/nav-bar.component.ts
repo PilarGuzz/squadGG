@@ -38,11 +38,10 @@ role: string |null ='';
     //this.logged=false;
   }
 
-//   ngOnChanges(changes: SimpleChanges): void {
-//     this.username = localStorage.getItem('user');
-//     this.role = localStorage.getItem('role');
-//  console.log(this.role);
  
+ 
+//   }
+
 //   }
 
 

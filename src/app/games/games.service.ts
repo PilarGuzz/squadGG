@@ -18,10 +18,18 @@ export class GamesService {
   }
 
   getGame(gamename : string): Observable<Game>{
+   
     return this.http.get<Game>(this.URL + `/${gamename}`)  
   }
 
-  addGame(game: Game) : Observable<Game>{
-    return this.http.post<any>(this.URL, game);
+  addGame(game: string, img: File|undefined) : Observable<any>{
+    const datos : FormData = new FormData();
+    if(img){
+      datos.append('img', img, img.name);
+
+    }
+    datos.append('gamename', game)
+
+    return this.http.post<any>(this.URL, datos);
   }
 }

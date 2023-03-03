@@ -16,7 +16,7 @@
 
                             <label class="form-label">Nombre del Juego</label>
 
-                            <input type="text" class="form-control" placeholder="your username"
+                            <input type="text" class="form-control" placeholder="nombre del juego"
                             name="gamename" 
                             required 
                             [(ngModel)]="gamename">
@@ -28,18 +28,20 @@
                         </div>
                       
 
-                        <!-- ---------------------- Campo de repeat password -->
+                        <!-- ---------------------- Campo de img --------------- -->
                         <div class="form-outline mb-4">
 
                             <label class="form-label">Imagen</label>
-                            <input type="file" class="form-control" 
-                            name="username" 
+                            <!-- <input type="file" class="form-control" 
+                            name="img" 
                             required 
-                            [(ngModel)]="img">
+                            [(ngModel)]="img"> -->
+                            <input type="file" class="form-control"  name="img"  required   (change)="onFileSelected($event)">
                             <span class="form-text text-danger" *ngIf="notValidImg()">
                                 No es una imagen valida
                             </span>
                         </div>
+
 
 
                         <!-- Submit button -->
