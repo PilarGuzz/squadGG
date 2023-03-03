@@ -19,3 +19,14 @@ section img:hover{
     opacity: 1;
     filter: contrast(110%);
 }
+
+table{
+    background-color: rgba(0, 0, 0, 0.479);
+    width: 100%;
+}
+
+
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }

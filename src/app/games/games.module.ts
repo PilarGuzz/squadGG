@@ -8,6 +8,12 @@ import { GamesRoutingModule } from './games-routing.module';
 import { RouterModule } from '@angular/router';
 import { AddGameComponent } from './add-game/add-game.component';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+
+
+
+
 
 
 
@@ -23,7 +29,10 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     GamesRoutingModule,
-    RouterModule
-  ]
+    RouterModule,    
+    MatTableModule,
+    MatSortModule
+  ],
+  providers: [MatTableDataSource],
 })
 export class GamesModule { }

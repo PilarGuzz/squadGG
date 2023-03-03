@@ -12,6 +12,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RolGuard } from './guards/rol.guard';
 import { TokenGuard } from './guards/token.guard';
 import { ProfileModule } from './profile/profile.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProfileModule } from './profile/profile.module';
     HttpClientModule,
     SharedModule,
     GamesModule,
-    ProfileModule
+    ProfileModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

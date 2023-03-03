@@ -1,5 +1,7 @@
 import {  Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,6 +9,8 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit  {
+isLoggedIn$!: Observable<boolean>;
+
 username!: string | null;
 logged! : boolean;
 role: string |null ='';
@@ -15,7 +19,8 @@ role: string |null ='';
   ngOnInit(): void {
     this.authService.isloggedIn.subscribe({
       next: (resp) => {
-        this.logged=resp
+        this.logged=resp;
+        //this.isLoggedIn$ = resp;
       }
     })
 
@@ -25,6 +30,7 @@ role: string |null ='';
       }
     })
     this.username = localStorage.getItem('user');
+    console.log(this.role);
 
   }
 
@@ -34,13 +40,12 @@ role: string |null ='';
     this.logged=false;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.username = localStorage.getItem('user');
+//   ngOnChanges(changes: SimpleChanges): void {
+//     this.username = localStorage.getItem('user');
+//     this.role = localStorage.getItem('role');
+//  console.log(this.role);
  
-  }
-
-  
-
+//   }
 
 
 }
