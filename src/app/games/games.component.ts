@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Game } from '../shared/interfaces/game.interface';
 import { GamesService } from './games.service';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+
 
 
 @Component({
@@ -13,9 +12,6 @@ import {MatTableDataSource} from '@angular/material/table';
 export class GamesComponent implements OnInit {
   
 
-  dataSource!: MatTableDataSource<Game>;
-  @ViewChild(MatSort, { static: true })
-  sort: MatSort = new MatSort;
   
   games: Game[] = [];
   role: string | null = '';
@@ -36,8 +32,7 @@ export class GamesComponent implements OnInit {
     this.gameService.getGames()
     .subscribe(datos => {
       this.games = datos;
-      this.dataSource = new MatTableDataSource(datos);
-      this.dataSource.sort = this.sort;
+
     });
   };
 

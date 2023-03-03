@@ -10,19 +10,17 @@ import { Observable } from 'rxjs';
 })
 export class NavBarComponent implements OnInit  {
 isLoggedIn$!: Observable<boolean>;
+isAdmin$!: Observable<boolean>;
 
 username!: string | null;
-logged! : boolean;
+//logged! : boolean;
 role: string |null ='';
   constructor(private authService:  AuthService) { }
   
   ngOnInit(): void {
-    this.authService.isloggedIn.subscribe({
-      next: (resp) => {
-        this.logged=resp;
-        //this.isLoggedIn$ = resp;
-      }
-    })
+    this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.isAdmin$ = this.authService.isAdmin;
+    
 
     this.authService.userRole.subscribe({
       next: (resp) =>{
@@ -37,7 +35,7 @@ role: string |null ='';
 
   onlogOut():void {
     this.authService.logout();
-    this.logged=false;
+    //this.logged=false;
   }
 
 //   ngOnChanges(changes: SimpleChanges): void {

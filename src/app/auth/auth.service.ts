@@ -6,6 +6,7 @@ import { User } from '../shared/interfaces/user.interface';
 import { DecodeToken } from '../shared/interfaces/decode-token.interface';
 import jwtDecode from 'jwt-decode';
 import { UserService } from '../profile/user.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ import { UserService } from '../profile/user.service';
 export class AuthService {
 
   private loggedIn = new BehaviorSubject<boolean> (false);
+  private admin = new BehaviorSubject<boolean> (false);
   private role = new BehaviorSubject<string> ('');
   //private user = new BehaviorSubject<User>({username: '', email: '', password:'', birth: new Date()})
   user!: User;
@@ -25,12 +27,16 @@ export class AuthService {
   urlreg:string = 'http://localhost:8081/registrer'
   token!: DecodeToken;
 
-
-  constructor(private http: HttpClient, private userSrv: UserService) { }
-
-  get isloggedIn(){
+  
+  get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
+  get isAdmin() {
+    return this.admin.asObservable();
+  }
+
+  constructor(private http: HttpClient, private userSrv: UserService, private router: Router) { }
+
 
   get userRole(){
     return this.role.asObservable();
@@ -52,7 +58,9 @@ export class AuthService {
         this.role.next(this.token.role);
         localStorage.setItem('user', this.token.sub);
         localStorage.setItem('email', this.token.email);
-        
+        if(this.token.role == 'ADMIN_ROLE'){
+          this.admin.next(true);
+        }
 
         return of(true);
         //this.isAuthenticated();
@@ -83,15 +91,16 @@ export class AuthService {
 
   logout() {
     //loggedIn = false;
-    localStorage.setItem("loggedIn", "false")
+    localStorage.setItem("loggedIn", "false");
     this.loggedIn.next(false);
+    this.admin.next(false);
     this.role.next('');
     localStorage.removeItem('jwt');
     localStorage.removeItem("jwt");
     localStorage.removeItem("role");
     localStorage.removeItem("user");
     localStorage.removeItem("email");
-
+    this.router.navigate(['/login'])
   }
 
   isAuthenticated() : boolean {

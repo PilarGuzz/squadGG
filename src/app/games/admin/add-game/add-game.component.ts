@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Game } from '../../shared/interfaces/game.interface';
-import { GamesService } from '../games.service';
+import { Game } from '../../../shared/interfaces/game.interface';
+import { GamesService } from '../../games.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 const swalert = require('sweetalert2')

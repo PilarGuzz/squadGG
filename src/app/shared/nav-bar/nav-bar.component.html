@@ -13,25 +13,34 @@
             <li class="nav-item">
               <a class="nav-link"  [routerLink]="['/']">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!(isAdmin$|async)">
               <a class="nav-link " role="button" 
                 [routerLink]="['/game/']">
                   Games
                 </a>
             </li>
-            <li class="nav-item" *ngIf="role == 'ADMIN_ROLE'">
-              <a class="nav-link " role="button" 
-                [routerLink]="['/game/add']">
-                  Añadir juego
-                </a>
-            </li>
+
+
+            <div class="dropdown" *ngIf="(isAdmin$|async)">
+              <a class="dropdown-toggle nav-link"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Administrar Juegos
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" [routerLink]="['/game/']">Ver</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/game/admin/edit']" href="#">editar</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/game/admin/add']" href="#">Añadir juego</a></li>
+              </ul>
+            </div>
+
+
           </ul>
 
           <div class="navbar-title">
             <img src="/assets/img/nametri.png" height="50px" alt="Nombre de mi sitio web">
           </div>
 
-          <ul class="navbar-nav" *ngIf="!logged" >
+          <ul class="navbar-nav" *ngIf="!(isLoggedIn$|async)" >
             <li class="nav-item">
               <a class="nav-link" href="#" [routerLink]="['/auth/registrer']">
                 <button>
@@ -54,7 +63,7 @@
           </ul>
 
 
-          <ul class="navbar-nav" *ngIf="logged">
+          <ul class="navbar-nav" *ngIf="(isLoggedIn$|async)">
             <li class="nav-item">
               <a class="nav-link" href="#" [routerLink]="['/profile/', username]">
                 <button>
