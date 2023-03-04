@@ -16,13 +16,15 @@ const swalert = require('sweetalert2')
 export class EditProfileComponent implements OnInit {
 
   user!: User;
+  // img?: File;
 
   myForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.minLength(3)]],
     birth: ['', [Validators.required, this.ageValidator(16) ]],
     password: ['', [Validators.required, Validators.minLength(6), this.validatePassword]],
-    repeatpassword: ['', [Validators.required, this.matchPassword]]
+    repeatpassword: ['', [Validators.required, this.matchPassword]],
+    img: ['', [Validators.required]]
   });
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {}
@@ -31,24 +33,23 @@ export class EditProfileComponent implements OnInit {
     const username = localStorage.getItem('user');
 
     this.userService.getUser(username)
-    .subscribe({
-      next:(resp) =>{
-        this.user = resp
-
-        //const birth = `${this.user.birth.getFullYear()}-${this.user.birth.getMonth() + 1}-${this.user.birth.getDate()}`;
-        this.myForm = this.fb.group({
-          username: [this.user.username, [Validators.required, Validators.minLength(3)]],
-          email: [this.user.email, [Validators.required, Validators.minLength(3)]],
-          birth: [formatDate(this.user.birth, 'yyyy-MM-dd', 'en'), [Validators.required, this.ageValidator(16) ]],
-          password: ['', [Validators.required, Validators.minLength(6), this.validatePassword]],
-          repeatpassword: ['', [Validators.required, this.matchPassword]]
-        })
-      } ,
-      error: (error) => console.log(error)
-      
-    })
+      .subscribe({
+        next:(resp) =>{
+          this.user = resp
+          this.myForm = this.fb.group({
+            username: [this.user.username, [Validators.required, Validators.minLength(3)]],
+            email: [this.user.email, [Validators.required, Validators.minLength(3)]],
+            birth: [formatDate(this.user.birth, 'yyyy-MM-dd', 'en'), [Validators.required, this.ageValidator(16) ]],
+            password: ['', [Validators.required, Validators.minLength(6), this.validatePassword]],
+            repeatpassword: ['', [Validators.required, this.matchPassword]]
+          })
+        } ,
+        error: (error) => console.log(error)
+        
+      });
   }
-  ageValidator(minAge: number): ValidatorFn {
+  
+  private ageValidator(minAge: number): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
       const birthday = new Date(control.value);
       const ageDiffMs = Date.now() - birthday.getTime();
@@ -58,50 +59,79 @@ export class EditProfileComponent implements OnInit {
     };
   }
 
-    validatePassword(control: FormControl) {
-      const password = control.value;
-      const hasUppercase = /[A-Z]/.test(password);
-      const hasLowercase = /[a-z]/.test(password);
-      const hasNumber = /\d/.test(password);
-      const valid = hasUppercase && hasLowercase && hasNumber;
-      return valid ? null : { invalidPassword: true };
+  private validatePassword(control: FormControl) {
+    const password = control.value;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const valid = hasUppercase && hasLowercase && hasNumber;
+    return valid ? null : { invalidPassword: true };
+  }
+
+
+  private matchPassword(control: FormControl) {
+    const passwordControl = control.root.get('password');
+    if (!passwordControl) {
+      return null;
     }
+    const password = passwordControl.value;
+    const confirmPassword = control.value;
+    return password === confirmPassword ? null : { mismatch: true };
+  }
+
+  isValidField(field:string){
+    return this.myForm.controls[field].errors
+    && this.myForm.controls[field].touched
+  }
+
+  onFileSelected(event: any) {
+    this.myForm.value.img = event.target.files[0];
+  }
+
+  private send() {
+
+    // Carlos Implementa aqui el servicio para actualizar el usuario
+    // this.userService.updateUser(this.user.username, this.myForm)
+    //   .subscribe({
+    //     next: (resp) => {
+    //       swalert.fire('Usuario actualizado', 'Se ha actualizado el usuario correctamente', 'success')
+    //       this.router.navigateByUrl('/profile')
+    //     },
+    //     error: (error) => {
+    //       swalert.fire('Error', error.error.msg, 'error')
+    //     }
+    //   });
 
 
-    matchPassword(control: FormControl) {
-      const passwordControl = control.root.get('password');
-      if (!passwordControl) {
-        return null;
-      }
-      const password = passwordControl.value;
-      const confirmPassword = control.value;
-      return password === confirmPassword ? null : { mismatch: true };
+    this.userService.updateUser({
+      username: this.myForm.value.username,
+      email: this.myForm.value.email,
+      birth: this.myForm.value.birth,
+      password: this.myForm.value.password
+    }, this.myForm.value.img, this.user.username)
+      .subscribe({
+        next: (resp) => {
+          swalert.fire('Usuario actualizado', 'Se ha actualizado el usuario correctamente', 'success')
+          this.router.navigateByUrl('/profile')
+          },
+          error: (error) => {
+            swalert.fire('Error', error.error.msg, 'error')
+        }
+      });
+
+  }
+
+  private save(): Boolean{
+    if(this.myForm.invalid){
+      this.myForm.markAllAsTouched();
+      return false;
     }
-
-    isValidField(field:string){
-      return this.myForm.controls[field].errors
-      && this.myForm.controls[field].touched
-    }
-
-    send() {
-      this.user.username = this.myForm.value.username
-      this.user.email = this.myForm.value.email;
-      this.user.birth = this.myForm.value.birth;
-      this.user.password = this.myForm.value.password;
-   
-      
-    }
-
-    save(){
-      if(this.myForm.invalid){
-        this.myForm.markAllAsTouched();
-        return 
-      }
-   }
+    return true;
+  }
   
-    onSubmit(){
+  onSubmit(){
+    if (this.save()) {
       this.send();
-      this.save();
-      
     }
+  }
 }

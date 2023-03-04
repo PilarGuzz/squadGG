@@ -78,15 +78,16 @@ export class RegistrerComponent implements OnInit {
     return this.myForm.controls[field].errors
     && this.myForm.controls[field].touched
   }
-  save(){
+  save(): Boolean{
     if(this.myForm.invalid){
       this.myForm.markAllAsTouched();
-      return 
+      return false;
     }
+
+    return true;
 /*     this.myForm.reset()
  */    
-/*     console.log(this.myForm.value)
- */  }
+ }
 
 
   send() {
@@ -97,28 +98,34 @@ export class RegistrerComponent implements OnInit {
  
     //this.user = this.myForm.value;
     this.authService.registerUser(this.user)
-    .subscribe({
-      next:(response) => {
-        console.log('Registro exitoso:', response);
-        this.router.navigate(['/auth/login'])
-      },
-      error: (err)=>{
-        if (err.status === 400 && err.error === 'Identificador ya existe') {
-          // mostrar un mensaje de error al usuario, indicando que el username ya existe
-          swalert.fire({
-            icon: 'error',
-            title: 'Oops...Username ya existe!',
-            text: 'Inserte un nombre de usuario válido',
-           
-          })
+      .subscribe({
+        next:(response) => {
+          console.log('Registro exitoso:', response);
+          this.router.navigate(['/auth/login'])
+        },
+        error: (err)=>{
+          if (err.status === 409) {
+            // mostrar un mensaje de error al usuario, indicando que el username ya existe
+            swalert.fire({
+              icon: 'error',
+              title: 'Oops...El nombre de usuario ya existe!',
+              text: 'Inserte un username válido',
+            })
+          } else {
+            // mostrar un mensaje de error al usuario, indicando que el username ya existe
+            swalert.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Hubo un error al registrar el usuario',
+            })
+          }
         }
-      }
-    })
+      })
   }
 
   onSubmit(){
-    this.send();
-    this.save();
-    
+    if (this.save()) {
+      this.send();
+    }
   }
 }

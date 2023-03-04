@@ -70,18 +70,28 @@ async updateFile(game : string) {
   
   if (file) {
     
+    this.gameService.updateImg(game, file).subscribe(response => {
+      swalert.fire('Imagen Actualizada!', '', 'success')
+      this.cargarDatos();
+    }, error => {
+      console.error('Error al actualizar la imagen:', error);
+      swalert.fire('No se ha podido actualizar!', '', 'info')
+     
+      
+    });
+
     
-    this.gameService.updateImg(game, file)
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      if (e.target && e.target.result) {
-        swalert.fire({
-          title: 'Your uploaded picture',
-          imageUrl: e.target.result,
-          imageAlt: 'The uploaded picture'
-        });
-      }
-    }
+    
+    // const reader = new FileReader()
+    // reader.onload = (e) => {
+    //   if (e.target && e.target.result) {
+    //     swalert.fire({
+    //       title: 'Your uploaded picture',
+    //       imageUrl: e.target.result,
+    //       imageAlt: 'The uploaded picture'
+    //     });
+    //   }
+    // }
   
   }
 }
