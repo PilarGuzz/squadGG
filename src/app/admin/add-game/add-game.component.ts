@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Game } from '../../../shared/interfaces/game.interface';
-import { GamesService } from '../../games.service';
+import { Game } from '../../shared/interfaces/game.interface';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { GamesService } from 'src/app/games/games.service';
 const swalert = require('sweetalert2')
 
 
@@ -27,9 +27,8 @@ export class AddGameComponent implements OnInit {
     //this.game = {gamename: this.gamename, img: this.img}
     this.gameService.addGame(this.gamename, this.img)
     .subscribe({
-      next:(resp) => {
-        console.log("respuesta")
-        if (resp) this.router.navigate(['/game']);
+      next:(resp) => {       
+        if (resp) this.router.navigate(['/game/admin/edit']);
         else {
           this.gamename="";
           this.img= undefined;
@@ -37,7 +36,6 @@ export class AddGameComponent implements OnInit {
             icon: 'error',
             title: 'Oops...',
             text: 'El juego ya existe!',
-            footer: '<a href="">Why do I have this issue?</a>'
           })
         }
       }

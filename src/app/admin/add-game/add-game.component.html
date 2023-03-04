@@ -11,7 +11,7 @@
                     <h2>Añadir juego nuevo</h2>
                     <form #myForm="ngForm" autocomplete="off" (ngSubmit)="save()">
                         
-                        <!-- ----------- Campo de username ---------------- -->
+                        <!-- ----------- Campo de nombre ---------------- -->
                         <div class="form-outline mb-4">
 
                             <label class="form-label">Nombre del Juego</label>
@@ -32,10 +32,7 @@
                         <div class="form-outline mb-4">
 
                             <label class="form-label">Imagen</label>
-                            <!-- <input type="file" class="form-control" 
-                            name="img" 
-                            required 
-                            [(ngModel)]="img"> -->
+                            
                             <input type="file" class="form-control"  name="img"  required   (change)="onFileSelected($event)">
                             <span class="form-text text-danger" *ngIf="notValidImg()">
                                 No es una imagen valida
@@ -46,7 +43,7 @@
 
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="myForm.invalid">
-                            Entrar
+                            Añadir
                         </button>
 
                      
