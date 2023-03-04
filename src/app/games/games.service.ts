@@ -32,4 +32,20 @@ export class GamesService {
 
     return this.http.post<any>(this.URL, datos);
   }
+
+  // deleteGame2(gamename : string) : void {
+  //   console.log('antes de borrar '+ gamename);
+  //   this.http.delete<string>(this.URL+'/'+gamename);
+  // }
+
+  deleteGame(gamename : string) : void {
+    this.http.delete<string>(encodeURIComponent(this.URL+'/'+gamename))
+    .subscribe(response => {
+      console.log('Juego eliminado con éxito:', response);
+      // Realizar cualquier acción necesaria después de la eliminación
+    }, error => {
+      console.error('Error al eliminar el juego:', error);
+      // Realizar cualquier acción necesaria en caso de error
+    });
+}
 }

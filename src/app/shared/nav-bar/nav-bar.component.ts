@@ -21,28 +21,19 @@ role: string |null ='';
     this.isLoggedIn$ = this.authService.isLoggedIn;
     this.isAdmin$ = this.authService.isAdmin;
     
-
-    this.authService.userRole.subscribe({
-      next: (resp) =>{
-        this.role = resp;
-      }
-    })
-    this.username = localStorage.getItem('user');
-    console.log(this.role);
+    if (localStorage.getItem('user') != null) {
+      this.username = localStorage.getItem('user');
+      this.role = localStorage.getItem('role');
+      this.authService.loggedIn.next(true);
+      this.authService.admin.next(this.role == 'ADMIN_ROLE');
+    }   
 
   }
 
 
   onlogOut():void {
     this.authService.logout();
-    //this.logged=false;
   }
-
- 
- 
-//   }
-
-//   }
 
 
 }

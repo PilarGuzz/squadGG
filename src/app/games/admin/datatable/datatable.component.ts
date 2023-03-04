@@ -3,6 +3,8 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Game } from 'src/app/shared/interfaces/game.interface';
 import { GamesService } from '../../games.service';
+const swalert = require('sweetalert2')
+
 
 @Component({
   selector: 'app-datatable',
@@ -14,7 +16,7 @@ export class DatatableComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   sort: MatSort = new MatSort;
 
-  displayedColumns: string[] = ['position', 'gamename', 'img'];
+  displayedColumns: string[] = ['position', 'gamename', 'img', 'acciones'];
 
 
   constructor(private gameService : GamesService) {   }
@@ -30,5 +32,27 @@ export class DatatableComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   };
+
+  public eliminar(gamename:string): void{
+    
+    swalert.fire({
+      title: '¿Estás seguro que quieres eliminarlo?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      denyButtonText: `No`,
+    }).then((result: { isConfirmed: any; isDenied: any; }) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.gameService.deleteGame(gamename)
+        swalert.fire('Eliminado!', '', 'success')
+      } else if (result.isDenied) {
+        swalert.fire('No ha sido eliminado', '', 'info')
+      }
+  });
+}
+  
+
+  
 
 }

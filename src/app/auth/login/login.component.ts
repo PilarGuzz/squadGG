@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
               text: 'User or password Wrong!',
               footer: '<a href="">Why do I have this issue?</a>'
             })
+            this.router.navigate(['/auth/login']);
           }
       }
     })

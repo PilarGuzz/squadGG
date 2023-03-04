@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private loggedIn = new BehaviorSubject<boolean> (false);
-  private admin = new BehaviorSubject<boolean> (false);
+  public loggedIn = new BehaviorSubject<boolean> (false);
+  public admin = new BehaviorSubject<boolean> (false);
   private role = new BehaviorSubject<string> ('');
   //private user = new BehaviorSubject<User>({username: '', email: '', password:'', birth: new Date()})
   user!: User;
