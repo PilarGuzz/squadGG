@@ -12,3 +12,12 @@ export interface Post{
     img: string
     
   }
+  export  interface PostApi {
+    title: string;
+    description: string;
+    datepublication: [number, number, number, number, number];
+    region: string;
+    nickgame: string;
+    levelingame: string;
+    ranklevel: string;
+  }

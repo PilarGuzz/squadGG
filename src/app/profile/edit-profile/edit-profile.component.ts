@@ -89,36 +89,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   private send() {
-
-    // Carlos Implementa aqui el servicio para actualizar el usuario
-    // this.userService.updateUser(this.user.username, this.myForm)
-    //   .subscribe({
-    //     next: (resp) => {
-    //       swalert.fire('Usuario actualizado', 'Se ha actualizado el usuario correctamente', 'success')
-    //       this.router.navigateByUrl('/profile')
-    //     },
-    //     error: (error) => {
-    //       swalert.fire('Error', error.error.msg, 'error')
-    //     }
-    //   });
-
-
-    this.userService.updateUser({
-      username: this.myForm.value.username,
-      email: this.myForm.value.email,
-      birth: this.myForm.value.birth,
-      password: this.myForm.value.password
-    }, this.myForm.value.img, this.user.username)
+    this.userService.updateUser(this.user.username, this.myForm)
       .subscribe({
         next: (resp) => {
           swalert.fire('Usuario actualizado', 'Se ha actualizado el usuario correctamente', 'success')
           this.router.navigateByUrl('/profile')
-          },
-          error: (error) => {
-            swalert.fire('Error', error.error.msg, 'error')
+        },
+        error: (error) => {
+          swalert.fire('Error', error.error.msg, 'error')
         }
       });
-
   }
 
   private save(): Boolean{

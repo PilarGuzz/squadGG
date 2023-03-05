@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../shared/interfaces/user.interface';
+import { User, UserApi } from '../shared/interfaces/user.interface';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -14,10 +14,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers():Observable<User[]>{
-    const jwt = localStorage.getItem('jwt');
+  getUsers(size:number,pag:number):Observable<UserApi>{
 
-    return this.http.get<User[]>(this.URL)
+    return this.http.get<UserApi>(this.URL+'?pageNumber='+pag+'&sizeNumber='+size)
   }
 
   getUser(username:string |null):Observable<User>{
@@ -26,24 +25,24 @@ export class UserService {
     return this.http.get<User>(this.URL+'/'+username)
   }
 
-  // updateUser(username: string, form: FormGroup): Observable<any> {
-  //   const formData = new FormData();
-    
-  // }
-
-  updateUser(json:any, img : File| undefined, username: string ): Observable<any> {
+  updateUser(username: string, form: FormGroup): Observable<any> {
     const formData = new FormData();
-    console.log(json);
-    
-    formData.append('user', new Blob([JSON.stringify(json)], {type: 'application/json'}))
-    console.log(formData);
-    if (img) {
-      formData.append('img', img, img.name);
+    if (form.value.img) {
+      formData.append('img', form.value.img, form.value.img.name);
     }
-    
-    return this.http.put<any>(this.URL + '/' + username, formData)
-    
-  }
+    if (form.value.password) {
+      formData.append('password', form.value.password);
+    }
 
+    if (form.value.email) {
+      formData.append('email', form.value.email);
+    }
+
+    if (form.value.birth) {
+      formData.append('birth', form.value.birth);
+    }
+
+    return this.http.put(this.URL + '/' + username, formData)
+  }
 
 }

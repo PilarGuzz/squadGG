@@ -115,6 +115,8 @@ export class AuthService {
 
 
   registerUser(user: User): Observable<any> {
+    console.log(user);
+    
     return this.http.post(this.urlreg, user).pipe(
       switchMap((response: any) => {
         return response;

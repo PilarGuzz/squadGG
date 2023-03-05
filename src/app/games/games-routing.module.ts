@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddGameComponent } from '../admin/add-game/add-game.component';
-import { DatatableGameComponent } from '../admin/datatable/datatable-game.component';
+import { AddGameComponent } from '../admin/game/add-game/add-game.component';
+import { DatatableGameComponent } from '../admin/game/datatable/datatable-game.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GamesComponent } from './games.component';
 

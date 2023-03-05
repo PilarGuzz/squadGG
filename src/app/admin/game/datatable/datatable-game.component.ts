@@ -80,18 +80,6 @@ async updateFile(game : string) {
       
     });
 
-    
-    
-    // const reader = new FileReader()
-    // reader.onload = (e) => {
-    //   if (e.target && e.target.result) {
-    //     swalert.fire({
-    //       title: 'Your uploaded picture',
-    //       imageUrl: e.target.result,
-    //       imageAlt: 'The uploaded picture'
-    //     });
-    //   }
-    // }
   
   }
 }

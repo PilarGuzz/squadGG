@@ -34,9 +34,7 @@ export class RegistrerComponent implements OnInit {
       email: '',
       birth: new Date(),
       password: '',
-      img:'',
-      discord: '',
-      acerca: ''
+      img:''
 
     };
   }
@@ -112,7 +110,7 @@ export class RegistrerComponent implements OnInit {
               text: 'Inserte un username válido',
             })
           } else {
-            // mostrar un mensaje de error al usuario, indicando que el username ya existe
+            // mostrar un mensaje de error al usuario
             swalert.fire({
               icon: 'error',
               title: 'Oops...',
