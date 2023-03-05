@@ -99,9 +99,16 @@ export class RegistrerComponent implements OnInit {
       .subscribe({
         next:(response) => {
           console.log('Registro exitoso:', response);
+          swalert.fire({
+            icon: 'success',
+            title: 'Usuario creado!',
+            text: 'El usuario fue creado exitosamente!',
+          });
           this.router.navigate(['/auth/login'])
         },
         error: (err)=>{
+          console.log(err);
+          
           if (err.status === 409) {
             // mostrar un mensaje de error al usuario, indicando que el username ya existe
             swalert.fire({

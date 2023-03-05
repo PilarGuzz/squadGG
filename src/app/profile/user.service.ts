@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 export class UserService {
 
   URL : string = 'http://localhost:8081/users'
+  urlAdmin : string = 'http://localhost:8081/admin/users'
 
 
   constructor(private http: HttpClient) { }
@@ -43,6 +44,18 @@ export class UserService {
     }
 
     return this.http.put(this.URL + '/' + username, formData)
+  }
+
+  updateAdmin(username: string, role: string): Observable<any>{
+
+    return this.http.put(this.urlAdmin + '/' + username, role)
+
+  }
+
+  updateActive(username: string, active: boolean): Observable<any>{
+
+    return this.http.put(this.urlAdmin + '/' + username, active)
+
   }
 
 }

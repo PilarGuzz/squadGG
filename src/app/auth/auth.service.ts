@@ -100,7 +100,7 @@ export class AuthService {
     localStorage.removeItem("role");
     localStorage.removeItem("user");
     localStorage.removeItem("email");
-    this.router.navigate(['/login'])
+    this.router.navigate(['/auth/login'])
   }
 
   isAuthenticated() : boolean {
@@ -116,12 +116,7 @@ export class AuthService {
 
   registerUser(user: User): Observable<any> {
     console.log(user);
-    
-    return this.http.post(this.urlreg, user).pipe(
-      switchMap((response: any) => {
-        return response;
-      })
-    );
+    return this.http.post(this.urlreg, user)
   }
 
 }
