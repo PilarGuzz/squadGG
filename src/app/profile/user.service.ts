@@ -47,7 +47,9 @@ export class UserService {
   }
 
   updateAdmin(username: string, role: string): Observable<any>{
-
+  
+    console.log(role);
+    console.log(username);
     return this.http.put(this.urlAdmin + '/' + username, role)
 
   }

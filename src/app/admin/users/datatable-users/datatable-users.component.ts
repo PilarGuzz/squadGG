@@ -63,15 +63,23 @@ export class DatatableUsersComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, change it!'
     }).then((result: { isConfirmed: any; }) => {
       if (result.isConfirmed) {
         this.userService.updateAdmin(username, roleToChange)
-        swalert.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        .subscribe({
+          next: (resp) => {
+            console.log('cambiado');
+            
+            swalert.fire(
+              'Actualizado!',
+              'Your file has been deleted.',
+              'success'
+            )
+        }, error: (error) => {
+          swalert.fire('Error', error.error.msg, 'error')
+        }
+      })
       }
     }) 
   }
