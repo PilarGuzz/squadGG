@@ -13,6 +13,8 @@ export class RolGuard implements CanActivate {
       const username : string = route.params['username']
       const userLogged = localStorage.getItem('user');
       let res : boolean = false
+      console.log(username);
+      
       if(username == userLogged){
         res = true;
       }

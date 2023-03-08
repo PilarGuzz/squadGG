@@ -3,8 +3,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/profile/user.service';
-import { UserApiContent } from 'src/app/shared/interfaces/user.interface';
+import { UserService } from 'src/app/_services/user.service';
+import { UserApiContent } from 'src/app/_interfaces/user.interface';
 
 const swalert = require('sweetalert2')
 
@@ -57,28 +57,35 @@ export class DatatableUsersComponent implements OnInit {
   async updateAdmin(username : string, role: string) {
     const roleToChange = (role === "ADMIN_ROLE") ? "USER_ROLE" : "ADMIN_ROLE";
     swalert.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro?',
+      text: "Vas a cambiar el rol del usuario " + username,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Sí'
     }).then((result: { isConfirmed: any; }) => {
       if (result.isConfirmed) {
         this.userService.updateAdmin(username, roleToChange)
+        .subscribe({
+          next:(resp) =>{
         swalert.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Actualizado!',
+          'El rol ha sido actualizado.',
           'success'
         )
+        this.cargarDatos();
+        this.router.navigate(['/admin/users'])
       }
-    }) 
+      })
+    }}) 
   }
 
 
 
   async updateActive(username : string, active: boolean) {
+    console.log(active);
+    
     swalert.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -90,11 +97,17 @@ export class DatatableUsersComponent implements OnInit {
     }).then((result: { isConfirmed: any; }) => {
       if (result.isConfirmed) {
         this.userService.updateActive(username, !active)
+        .subscribe({
+          next:(resp) =>{
         swalert.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Actualizado!',
+          'El rol ha sido actualizado.',
           'success'
         )
+        this.cargarDatos();
+        this.router.navigate(['/admin/users'])
+          }
+      })
       }
     }) 
   }

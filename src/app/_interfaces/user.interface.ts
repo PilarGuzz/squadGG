@@ -1,4 +1,3 @@
-import { PostApi } from "./post.interface";
 
 export interface User {
     username: string,

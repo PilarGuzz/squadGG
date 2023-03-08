@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User, UserApi } from '../shared/interfaces/user.interface';
+import { catchError, Observable, throwError } from 'rxjs';
+import { User, UserApi } from '../_interfaces/user.interface';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -11,6 +11,8 @@ export class UserService {
 
   URL : string = 'http://localhost:8081/users'
   urlAdmin : string = 'http://localhost:8081/admin/users'
+    // URL : string = environment.apiUrl + '/users'
+  // urlAdmin : string = environment.apiUrl + '/admin/users'
 
 
   constructor(private http: HttpClient) { }
@@ -48,13 +50,21 @@ export class UserService {
 
   updateAdmin(username: string, role: string): Observable<any>{
 
-    return this.http.put(this.urlAdmin + '/' + username, role)
+    const formData = new FormData();
+    formData.append('role', role);
+
+    return this.http.put(this.urlAdmin + '/' + username, formData)
 
   }
 
   updateActive(username: string, active: boolean): Observable<any>{
+    
+    const activeString = active.toString();
+    const formData = new FormData();
+    formData.append('active', activeString);
 
-    return this.http.put(this.urlAdmin + '/' + username, active)
+    return this.http.put(this.urlAdmin + '/' + username, formData)
+    
 
   }
 

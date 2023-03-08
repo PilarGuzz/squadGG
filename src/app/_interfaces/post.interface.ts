@@ -9,7 +9,8 @@ export interface Post{
     gamename: string,
     datepublication: number[],
     dateformated: string,
-    img: string
+    img: string,
+    id: number
     
   }
   export  interface PostApi {

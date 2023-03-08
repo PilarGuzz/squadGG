@@ -1,0 +1,41 @@
+<div class="container py-1"  *ngFor="let comment of postsList">
+
+<div class="card mb-3" >
+  <div class="row g-0">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <p class="mb-0">{{comment.title}}</p>
+      <div class="d-flex align-items-center">
+        <div class="ml-auto">
+
+          <button class="btn btn-outline-danger btn-sm" (click)="deletePost(comment.id)">Borrar</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 ">
+      <div class="card-body">
+      <!-- <img src="../../../../assets/img/logo.png" class="img-fluid rounded-start" alt="..."> 
+
+      <img src="{{comment.img}}" class="img-fluid rounded-start" alt="...">-->
+      <h5 class="card-title">{{comment.username}}</h5>
+      <p class="card-text"> <b>Nombre de usuario en el juego: </b> {{comment.nickgame}}</p>
+      <p class="card-text"> <b>Nivel de usuario en el juego: </b> {{comment.levelingame}}</p>
+      <p class="card-text"> <b>Nivel de usuario en competitivo: </b> {{comment.ranklevel}}</p>
+    </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+      <p class="card-text"> <b>Región: </b>{{comment.region}}</p>
+      <p class="card-text"> <b>Mensaje: </b>{{comment.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    {{comment.dateformated}}
+  </div>
+</div>
+</div>
+
+
+
+ 

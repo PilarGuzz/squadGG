@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
-import { GamesService } from 'src/app/games/games.service';
-import { Game } from 'src/app/shared/interfaces/game.interface';
+import { GamesService } from 'src/app/_services/games.service';
+import { Game } from 'src/app/_interfaces/game.interface';
 const swalert = require('sweetalert2')
 
 

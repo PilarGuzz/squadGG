@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/interfaces/user.interface';
+import { User } from 'src/app/_interfaces/user.interface';
 
 @Component({
   selector: 'app-game-profile',

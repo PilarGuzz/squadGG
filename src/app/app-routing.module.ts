@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RolGuard } from './guards/rol.guard';
-import { TokenGuard } from './guards/token.guard';
+import { RolGuard } from './_guards/rol.guard';
+import { TokenGuard } from './_guards/token.guard';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
-    canActivate: [TokenGuard, RolGuard]
+    canActivate: [TokenGuard]
   },
   {
     path: 'auth',

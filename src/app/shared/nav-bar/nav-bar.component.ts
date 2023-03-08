@@ -1,5 +1,5 @@
 import {  Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../_services/auth.service';
 import { Observable } from 'rxjs';
 
 
@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class NavBarComponent implements OnInit  {
 isLoggedIn$!: Observable<boolean>;
 isAdmin$!: Observable<boolean>;
+username$!: Observable<string>;
 
 username!: string | null;
 //logged! : boolean;
@@ -20,6 +21,7 @@ role: string |null ='';
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn;
     this.isAdmin$ = this.authService.isAdmin;
+    this.username$ = this.authService.username;
     
     if (localStorage.getItem('user') != null) {
       this.username = localStorage.getItem('user');
@@ -33,6 +35,7 @@ role: string |null ='';
 
   onlogOut():void {
     this.authService.logout();
+    this.ngOnInit()
   }
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Game } from '../shared/interfaces/game.interface';
+import { Game } from '../_interfaces/game.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class GamesService {
 
   URL: string = 'http://localhost:8081/games'
+    //URL: string = environment.apiUrl + '/games'
+
 
 
   constructor(private http: HttpClient) { }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup,  ValidatorFn,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/profile/user.service';
-import { User } from 'src/app/shared/interfaces/user.interface';
-import { AuthService } from '../auth.service';
+import { UserService } from 'src/app/_services/user.service';
+import { User } from 'src/app/_interfaces/user.interface';
+import { AuthService } from '../../_services/auth.service';
 
 const swalert = require('sweetalert2')
 

@@ -2,9 +2,9 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
-import { User } from 'src/app/shared/interfaces/user.interface';
-import { UserService } from '../user.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { User } from 'src/app/_interfaces/user.interface';
+import { UserService } from '../../_services/user.service';
 const swalert = require('sweetalert2')
 
 
@@ -21,10 +21,10 @@ export class EditProfileComponent implements OnInit {
   myForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.minLength(3)]],
-    birth: ['', [Validators.required, this.ageValidator(16) ]],
-    password: ['', [Validators.required, Validators.minLength(6), this.validatePassword]],
-    repeatpassword: ['', [Validators.required, this.matchPassword]],
-    img: ['', [Validators.required]]
+    birth: ['', [, this.ageValidator(16) ]],
+    password: ['', [ Validators.minLength(6), this.validatePassword]],
+    repeatpassword: ['', [ this.matchPassword]],
+    img: ['', []]
   });
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {}
@@ -39,9 +39,9 @@ export class EditProfileComponent implements OnInit {
           this.myForm = this.fb.group({
             username: [this.user.username, [Validators.required, Validators.minLength(3)]],
             email: [this.user.email, [Validators.required, Validators.minLength(3)]],
-            birth: [formatDate(this.user.birth, 'yyyy-MM-dd', 'en'), [Validators.required, this.ageValidator(16) ]],
-            password: ['', [Validators.required, Validators.minLength(6), this.validatePassword]],
-            repeatpassword: ['', [Validators.required, this.matchPassword]]
+            birth: [formatDate(this.user.birth, 'yyyy-MM-dd', 'en'), [ this.ageValidator(16) ]],
+            password: ['', [  this.validatePassword]],
+            repeatpassword: ['', [ this.matchPassword]]
           })
         } ,
         error: (error) => console.log(error)
@@ -60,11 +60,13 @@ export class EditProfileComponent implements OnInit {
   }
 
   private validatePassword(control: FormControl) {
+    if(control.value.length===0) return null;
     const password = control.value;
+    const minLength = password.length >= 6;   
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
     const hasNumber = /\d/.test(password);
-    const valid = hasUppercase && hasLowercase && hasNumber;
+    const valid = hasUppercase && hasLowercase && hasNumber && minLength;
     return valid ? null : { invalidPassword: true };
   }
 

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, Observable, of, switchMap } from 'rxjs';
-import { Token } from '../shared/interfaces/token.interface';
-import { User } from '../shared/interfaces/user.interface';
-import { DecodeToken } from '../shared/interfaces/decode-token.interface';
+import { Token } from '../_interfaces/token.interface';
+import { User } from '../_interfaces/user.interface';
+import { DecodeToken } from '../_interfaces/decode-token.interface';
 import jwtDecode from 'jwt-decode';
-import { UserService } from '../profile/user.service';
+import { UserService } from './user.service';
 import { Router } from '@angular/router';
 
 
@@ -17,12 +17,16 @@ export class AuthService {
   public loggedIn = new BehaviorSubject<boolean> (false);
   public admin = new BehaviorSubject<boolean> (false);
   private role = new BehaviorSubject<string> ('');
+  private usernameNav = new BehaviorSubject<string> ('');
+
   //private user = new BehaviorSubject<User>({username: '', email: '', password:'', birth: new Date()})
   user!: User;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   }
+    // urllogin: string = environment.apiUrl + '/login'
+  // urlreg: string = environment.apiUrl + '/registrer'
   urllogin:string = 'http://localhost:8081/login'
   urlreg:string = 'http://localhost:8081/registrer'
   token!: DecodeToken;
@@ -33,6 +37,10 @@ export class AuthService {
   }
   get isAdmin() {
     return this.admin.asObservable();
+  }
+
+  get username() {
+    return this.usernameNav.asObservable();
   }
 
   constructor(private http: HttpClient, private userSrv: UserService, private router: Router) { }
@@ -57,6 +65,7 @@ export class AuthService {
         localStorage.setItem('role', this.token.role);
         this.role.next(this.token.role);
         localStorage.setItem('user', this.token.sub);
+        this.usernameNav.next(this.token.sub);
         localStorage.setItem('email', this.token.email);
         if(this.token.role == 'ADMIN_ROLE'){
           this.admin.next(true);

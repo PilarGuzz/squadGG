@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './user.service';
-import { User } from '../shared/interfaces/user.interface';
-import { AuthService } from '../auth/auth.service';
-import { DecodeToken } from '../shared/interfaces/decode-token.interface';
+import { UserService } from '../_services/user.service';
+import { User } from '../_interfaces/user.interface';
+import { AuthService } from '../_services/auth.service';
+import { DecodeToken } from '../_interfaces/decode-token.interface';
 
 @Component({
   selector: 'app-profile',

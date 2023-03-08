@@ -1,0 +1,109 @@
+
+<div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5" >
+    <div class="row gx-lg-5 align-items-center mb-5">
+
+
+        <div class="col-lg-8 mb-5 mb-lg-0 position-relative">
+            <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+            <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+            <div class="card bg-glass">
+                <div class="card-body px-4 py-5 px-md-5">
+                    <h2>Encuentra compañeros en {{gamename}}</h2>
+
+                    <form [formGroup]="myForm" autocomplete="off" (ngSubmit)="send()">
+
+
+                        <!-- ----------- Campo de titulo ---------------- -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Título del Post</label>
+
+                            <input type="text" class="form-control" placeholder="título del post"
+                                formControlName="title">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('title')">
+                                El campo es obligatorio
+                            </span>
+
+                        </div>
+
+                        <!-- --------------- Campo de descripcion ------------------ -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Descripción</label>
+
+                            <textarea  class="form-control" placeholder="Escribe aquí un mensaje más detallado..."
+                                formControlName="description"></textarea>
+                                
+
+                            <span class="form-text text-danger" *ngIf="isValidField('description')">
+                                El campo es obligatorio
+                            </span>
+                        </div>
+
+                        <!-- -------------------------Campo de region --------------- -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Región</label>
+
+
+                            <input type="text" class="form-control" formControlName="region">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('region')">
+                                El campo es obligatorio
+                            </span>
+                        </div>
+
+
+                        <!-- -------------Campo  de nickgame ------------------- -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Nombre de usuario en {{gamename}}</label>
+
+
+                            <input type="text" class="form-control" formControlName="nickgame">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('nickgame')">
+                                El campo es obligatorio
+                            </span>
+                        </div>
+
+                        <!-- ---------------------- Campo de levelingame ----------------- -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Nivel de la cuenta en {{gamename}}</label>
+
+                            <input type="text" class="form-control" formControlName="levelingame">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('levelingame')">
+                                El campo es obligatorio
+                            </span>
+                        </div>
+
+                        <!-- ---------------------- Campo de ranklevel ----------------- -->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label">Nivel competitivo en {{gamename}}</label>
+
+                            <input type="text" class="form-control" formControlName="ranklevel">
+
+                            <span class="form-text text-danger" *ngIf="isValidField('ranklevel')">
+                                El campo es obligatorio
+                            </span>
+                        </div>
+
+                     
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4" >
+                            Enviar
+                        </button>
+
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
