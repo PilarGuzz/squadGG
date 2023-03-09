@@ -36,10 +36,7 @@ export class GamesService {
     return this.http.post<any>(this.URL, datos);
   }
 
-  // deleteGame2(gamename : string) : void {
-  //   console.log('antes de borrar '+ gamename);
-  //   this.http.delete<string>(this.URL+'/'+gamename);
-  // }
+  
 
   deleteGame(gamename: string): Observable<any> {
     return this.http.delete<string>(this.URL + '/' + gamename);

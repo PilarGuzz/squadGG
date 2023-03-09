@@ -33,12 +33,7 @@ export class LoginComponent implements OnInit {
     return this.myForm?.controls['password']?.invalid && 
         this.myForm?.controls['password']?.touched
   }
-  // onSubmit(){
 
-  //   console.log(`Username: ${this.password} Password: ${this.password}`)
-  //     this.myForm.resetForm();
-
-  // }
 
   onlogin():void {
     this.authService.login(this.myForm.value.username, this.myForm.value.password)
@@ -52,8 +47,7 @@ export class LoginComponent implements OnInit {
             swalert.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'User or password Wrong!',
-              footer: '<a href="">Why do I have this issue?</a>'
+              text: 'Usuario or Contraseña erróneo!',
             })
             this.router.navigate(['/auth/login']);
           }

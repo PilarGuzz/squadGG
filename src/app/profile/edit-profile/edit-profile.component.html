@@ -18,9 +18,7 @@
                             <input type="text" class="form-control" placeholder="your username"
                                 formControlName="username" readonly>
 
-                            <span class="form-text text-danger" *ngIf="isValidField('username')">
-                                No es un username valido
-                            </span>
+                           
 
                         </div>
                         <!-- --------------- Campo de email -->
@@ -89,6 +87,13 @@
                         <button type="submit" class="btn btn-primary btn-block mb-4" >
                             Editar
                         </button>
+                        &nbsp;&nbsp;
+                        <a  [routerLink]="['/profile/user.username']">
+
+                            <button  class="btn btn-secondary btn-block mb-4" >
+                                Cancelar
+                            </button>
+                        </a>
 
                     </form>
                 </div>

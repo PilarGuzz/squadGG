@@ -95,7 +95,7 @@ export class EditProfileComponent implements OnInit {
       .subscribe({
         next: (resp) => {
           swalert.fire('Usuario actualizado', 'Se ha actualizado el usuario correctamente', 'success')
-          this.router.navigateByUrl('/profile')
+          this.router.navigateByUrl('/profile/this.user.username')
         },
         error: (error) => {
           swalert.fire('Error', error.error.msg, 'error')

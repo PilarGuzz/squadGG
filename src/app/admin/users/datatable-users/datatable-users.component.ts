@@ -87,13 +87,13 @@ export class DatatableUsersComponent implements OnInit {
 
     
     swalert.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro?',
+      text: "Va a cambiar el estado del usuario "+ username,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Sí'
     }).then((result: { isConfirmed: any; }) => {
       if (result.isConfirmed) {
         this.userService.updateActive(username, !active)
@@ -101,7 +101,7 @@ export class DatatableUsersComponent implements OnInit {
           next:(resp) =>{
         swalert.fire(
           'Actualizado!',
-          'El rol ha sido actualizado.',
+          'El estado ha sido actualizado.',
           'success'
         )
         this.cargarDatos();

@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
     .subscribe({
       next:(resp) =>{
         this.user = resp
-        console.log(resp);
       } ,
       error: (error) => console.log(error)
       
