@@ -7,6 +7,8 @@ import { DecodeToken } from '../_interfaces/decode-token.interface';
 import jwtDecode from 'jwt-decode';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
 
 
 @Injectable({
@@ -25,10 +27,10 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   }
-    // urllogin: string = environment.apiUrl + '/login'
-  // urlreg: string = environment.apiUrl + '/registrer'
-  urllogin:string = 'http://localhost:8081/login'
-  urlreg:string = 'http://localhost:8081/registrer'
+   urllogin: string = environment.apiUrl + '/login'
+   urlreg: string = environment.apiUrl + '/registrer'
+  // urllogin:string = 'http://localhost:8081/login'
+  // urlreg:string = 'http://localhost:8081/registrer'
   token!: DecodeToken;
 
   

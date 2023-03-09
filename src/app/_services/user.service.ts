@@ -3,16 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { User, UserApi } from '../_interfaces/user.interface';
 import { FormGroup } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  URL : string = 'http://localhost:8081/users'
-  urlAdmin : string = 'http://localhost:8081/admin/users'
-    // URL : string = environment.apiUrl + '/users'
-  // urlAdmin : string = environment.apiUrl + '/admin/users'
+  //URL : string = 'http://localhost:8081/users'
+  //urlAdmin : string = 'http://localhost:8081/admin/users'
+  URL : string = environment.apiUrl + '/users'
+  urlAdmin : string = environment.apiUrl + '/admin/users'
 
 
   constructor(private http: HttpClient) { }

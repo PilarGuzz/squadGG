@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Game } from '../_interfaces/game.interface';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
 
-  URL: string = 'http://localhost:8081/games'
-    //URL: string = environment.apiUrl + '/games'
+  //URL: string = 'http://localhost:8081/games'
+  URL: string = environment.apiUrl + '/games'
 
 
 
