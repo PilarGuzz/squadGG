@@ -24,7 +24,6 @@ export class UserService {
   }
 
   getUser(username:string |null):Observable<User>{
-    console.log(username);
     
     return this.http.get<User>(this.URL+'/'+username)
   }

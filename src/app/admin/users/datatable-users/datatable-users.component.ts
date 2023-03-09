@@ -84,7 +84,7 @@ export class DatatableUsersComponent implements OnInit {
 
 
   async updateActive(username : string, active: boolean) {
-    console.log(active);
+
     
     swalert.fire({
       title: 'Are you sure?',

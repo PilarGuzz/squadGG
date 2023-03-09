@@ -22,11 +22,12 @@
       <p class="card-text"> <b>Nivel de usuario en el juego: </b> {{comment.levelingame}}</p>
       <p class="card-text"> <b>Nivel de usuario en competitivo: </b> {{comment.ranklevel}}</p>
     </div>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
       <p class="card-text"> <b>Región: </b>{{comment.region}}</p>
-      <p class="card-text"> <b>Mensaje: </b>{{comment.description}}</p>
+      <button (click)="showPost(comment.id)"> Ver más...</button>
+      <!-- <p class="card-text"> <b>Mensaje: </b>{{comment.description}}</p> -->
       </div>
     </div>
   </div>

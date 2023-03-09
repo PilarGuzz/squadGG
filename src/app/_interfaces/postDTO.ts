@@ -22,6 +22,7 @@ export interface PostDto {
 }
 
 export interface Content {
+    id:              number;
     title:           string;
     description:     string;
     region:          string;
@@ -29,13 +30,15 @@ export interface Content {
     levelingame:     string;
     ranklevel:       string;
     username:        string;
-    gamename:        Gamename;
+    gamename:        GamePost;
     datepublication: number[];
     img:             null;
+    dateformated: string;
 }
 
-export enum Gamename {
-    Valorant = "Valorant",
+export interface GamePost {
+    gamename:    string;
+
 }
 
 export interface Pageable {

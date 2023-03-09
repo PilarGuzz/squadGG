@@ -17,7 +17,21 @@
 
 
     <div class="col">
-        <app-comment [postsList]="postsList"></app-comment>
+        <app-comment [postsList]="postsList" (reload)="reloadData($event)" ></app-comment>
+
+
+
+
+        
+        <nav aria-label="Page navigation example" class="container py-1">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#" (click)="cargarDatos()">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#" >1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
     </div>
 
 </div>

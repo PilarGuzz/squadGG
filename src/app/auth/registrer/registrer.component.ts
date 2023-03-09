@@ -98,7 +98,7 @@ export class RegistrerComponent implements OnInit {
     this.authService.registerUser(this.user)
       .subscribe({
         next:(response) => {
-          console.log('Registro exitoso:', response);
+     
           swalert.fire({
             icon: 'success',
             title: 'Usuario creado!',

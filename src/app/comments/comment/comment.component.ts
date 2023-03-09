@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/_interfaces/post.interface';
+import { Content } from 'src/app/_interfaces/postDTO';
 import { CommentService } from '../../_services/comment.service';
 const swalert = require('sweetalert2')
 
@@ -11,10 +12,13 @@ const swalert = require('sweetalert2')
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-  @Input() postsList!: Post[];
+  @Input() postsList!: Content[];
+
+  @Output() reload = new EventEmitter<string>()
 
   gamename: string = '';
   id: number = 0;
+  post!: Content;
 
 
   constructor(private route: ActivatedRoute, private commServ: CommentService) { }
@@ -35,7 +39,6 @@ export class CommentComponent implements OnInit {
     this.route?.parent?.params.subscribe(
       (params) => {
         this.gamename = params['name'];
-        console.log(id);
         
         //this.id = params['id'];
         swalert.fire({
@@ -51,11 +54,13 @@ export class CommentComponent implements OnInit {
             this.commServ.deletePost(id, this.gamename)
               .subscribe({
                 next: (resp) => {
+                  console.log(resp);
+                  
                   swalert.fire('Eliminado!', '', 'success')
-
+                  this.reload.emit('Este dato viajará hacia el padre');
                 },
                 error: (error) => {
-
+                  console.log(error);
                 }
 
               })
@@ -65,6 +70,28 @@ export class CommentComponent implements OnInit {
 
         });
       })
+  }
+
+  showPost(id: number){
+    this.gamename = this.postsList[0].gamename.gamename    ;
+    this.commServ.post(id, this.gamename)
+    .subscribe({
+      next: (resp) => {
+        this.post = resp;
+        swalert.fire({
+          icon: 'info',
+          title: `${resp.title}`,
+          html: ` <div style="text-align: left; margin-left: 20px;">
+                  <p><b>Usuario: </b> ${resp.username.username} </p> <br> 
+                  <p><b>Usuario en el juego:</b> ${resp.nickgame} </p> <br> 
+                  <p><b>Usuario en el juego:</b> ${resp.region} </p> <br> 
+                  <p><b>Mensaje:</b> ${resp.description} </p>
+                  </div>`,
+     
+        })
+      }
+
+    })
   }
 
 
