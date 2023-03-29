@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../_services/games.service';
 import { Game } from '../_interfaces/game.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from '../_services/comment.service';
 import { Post } from '../_interfaces/post.interface';
 import { formatDate } from '@angular/common';
 import { Content } from '../_interfaces/postDTO';
+import { AuthService } from '../_services/auth.service';
+
 
 @Component({
   selector: 'app-comments',
@@ -22,7 +24,7 @@ export class CommentsComponent implements OnInit {
   gamename: string = '';
   maxPage: number = 10;
 
-  constructor(private gameService: GamesService, private route: ActivatedRoute, private commentserice: CommentService) { }
+  constructor(private gameService: GamesService, private route: ActivatedRoute, private commentserice: CommentService, public authServ: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -76,6 +78,16 @@ export class CommentsComponent implements OnInit {
     this.cargarDatos()
     
   }
+  
+  onButtonClick() {
+    
+    if (!localStorage.getItem('jwt')) {
+      this.router.navigate(['auth/login']);
+    } else {
+      this.router.navigate(['/game/'+this.gamename+'/posts/add'])
+        }
+  }
+  
 
 
 }

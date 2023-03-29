@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TokenGuard } from '../_guards/token.guard';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import { CommentsComponent } from './comments.component';
 
@@ -9,7 +10,7 @@ const routes: Routes = [
     { path: '',
     component: CommentsComponent
     },
-    { path: 'add',
+    { path: 'add', 
     component: AddCommentComponent
     }
 

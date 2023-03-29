@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/_interfaces/post.interface';
 import { Content } from 'src/app/_interfaces/postDTO';
+import { AuthService } from 'src/app/_services/auth.service';
 import { CommentService } from '../../_services/comment.service';
 const swalert = require('sweetalert2')
 
@@ -21,7 +22,7 @@ export class CommentComponent implements OnInit {
   post!: Content;
 
 
-  constructor(private route: ActivatedRoute, private commServ: CommentService) { }
+  constructor(private route: ActivatedRoute, private commServ: CommentService, private authServ : AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -34,6 +35,15 @@ export class CommentComponent implements OnInit {
     return fecha;
 
   }
+
+isOwnerOrAdmin(): boolean{
+  
+  if(this.authServ.isAuthenticated() && (this.post.username == this.authServ.user.username || localStorage.getItem('role') == 'ADMIN_ROLE')){
+    return true;
+  }
+  return false;
+}
+
 
   deletePost(id: number) {
     this.route?.parent?.params.subscribe(
@@ -71,8 +81,11 @@ export class CommentComponent implements OnInit {
         });
       })
   }
-
+ 
   showPost(id: number){
+    if(!this.authServ.isAuthenticated()){
+      this.router.navigate(['auth/login']);
+    }else{
     this.gamename = this.postsList[0].gamename.gamename    ;
     this.commServ.post(id, this.gamename)
     .subscribe({
@@ -92,6 +105,7 @@ export class CommentComponent implements OnInit {
       }
 
     })
+  }
   }
 
 

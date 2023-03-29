@@ -7,7 +7,7 @@
       <div class="d-flex align-items-center">
         <div class="ml-auto">
 
-          <button class="btn btn-outline-danger btn-sm" (click)="deletePost(comment.id)">Borrar</button>
+          <button class="btn btn-outline-danger btn-sm" *ngIf="isOwnerOrAdmin()"  (click)="deletePost(comment.id)">Borrar</button>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
   <div class="col-md-8">
     <div class="card-body">
       <p class="card-text"> <b>Región: </b>{{comment.region}}</p>
-      <button (click)="showPost(comment.id)"> Ver más...</button>
+      <button  (click)="showPost(comment.id)"> Ver más...</button>
       <!-- <p class="card-text"> <b>Mensaje: </b>{{comment.description}}</p> -->
       </div>
     </div>

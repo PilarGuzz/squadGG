@@ -10,10 +10,10 @@ import { environment } from '../../environments/environment';
 })
 export class UserService {
 
-  //URL : string = 'http://localhost:8081/users'
-  //urlAdmin : string = 'http://localhost:8081/admin/users'
-  URL : string = environment.apiUrl + '/users'
-  urlAdmin : string = environment.apiUrl + '/admin/users'
+  URL : string = 'http://localhost:8081/users'
+  urlAdmin : string = 'http://localhost:8081/admin/users'
+  //URL : string = environment.apiUrl + '/users'
+  //urlAdmin : string = environment.apiUrl + '/admin/users'
 
 
   constructor(private http: HttpClient) { }

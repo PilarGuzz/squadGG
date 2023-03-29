@@ -2,7 +2,8 @@
     <img class="juego " src="{{game.img}}" alt="imagen del juego">
 
     <div class="position-absolute top-50 end-0 translate-middle-y">
-        <a [routerLink]="['/game/'+gamename+'/posts/add']">
+        <!-- <a [routerLink]="['/game/'+gamename+'/posts/add']"> -->
+            <a (click)="onButtonClick()">
 
             <button class="btn btn-dark boton  position-absolute top-50 end-0 translate-middle-y">Añadir post</button>
         </a>
@@ -11,9 +12,9 @@
 </div>
 
 <div class="d-flex">
-    <!-- <div class="col-4">
+    <div class="col-4">
         <app-side-bar></app-side-bar>
-    </div> -->
+    </div> 
 
 
     <div class="col">
@@ -23,7 +24,7 @@
 
 
         
-        <!-- <nav aria-label="Page navigation example" class="container py-1">
+       <nav aria-label="Page navigation example" class="container py-1">
             <ul class="pagination">
               <li class="page-item"><a class="page-link" href="#" (click)="cargarDatos()">Previous</a></li>
               <li class="page-item"><a class="page-link" href="#" >1</a></li>
@@ -31,7 +32,7 @@
               <li class="page-item"><a class="page-link" href="#">3</a></li>
               <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
-          </nav> -->
+          </nav> 
     </div>
 
 </div>
