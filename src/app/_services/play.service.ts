@@ -18,13 +18,19 @@ export class PlayService {
     return this.http.get<Play[]>(this.URL)
   }
 
-  addPlay(game: Gamename): Observable<any> {
-
-    return this.http.post<any>(this.URL, game);
+  getPlaysByUser(): Observable<Play[]> {
+    return this.http.get<Play[]>(this.URL+"/user")
   }
 
-  deleteGame(gamename: Gamename): Observable<any> {
-    return this.http.delete<any>(this.URL);
+  addPlay(game: string): Observable<any> {
+    const datos: FormData = new FormData();
+    datos.append('gamename', game)
+
+    return this.http.post<any>(this.URL, datos);
+  }
+
+  deleteGame(gamename: string): Observable<any> {
+    return this.http.delete<any>(this.URL+"/"+gamename);
   }
 
  

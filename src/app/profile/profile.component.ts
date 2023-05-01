@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
   username!: string | null;
   user!: User;
   token!: DecodeToken;
+  dataLoaded: boolean = false;
+
 
   constructor(private userSrv : UserService, private authServ : AuthService) {}
 
@@ -25,6 +27,7 @@ export class ProfileComponent implements OnInit {
     .subscribe({
       next:(resp) =>{
         this.user = resp
+        this.dataLoaded = true;
       } ,
       error: (error) => console.log(error)
       

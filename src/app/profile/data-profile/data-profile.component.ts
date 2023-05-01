@@ -9,6 +9,7 @@ import { User } from 'src/app/_interfaces/user.interface';
 })
 export class DataProfileComponent implements OnInit {
   @Input() user!: User;
+  
 
   constructor() { }
 
