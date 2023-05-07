@@ -22,7 +22,7 @@ export class CommentComponent implements OnInit {
   post!: Content;
 
 
-  constructor(private route: ActivatedRoute, private commServ: CommentService, private authServ : AuthService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private commServ: CommentService, private authServ: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -36,20 +36,21 @@ export class CommentComponent implements OnInit {
 
   }
 
-isOwnerOrAdmin(): boolean{
-  
-  if(this.authServ.isAuthenticated() && (this.post.username == this.authServ.user.username || localStorage.getItem('role') == 'ADMIN_ROLE')){
-    return true;
-  }
-  return false;
-}
+  // isOwnerOrAdmin(owner: string): boolean {
+  //   console.log(owner);
+
+  //   if (this.authServ.isAuthenticated() && (owner == this.authServ.user.username || localStorage.getItem('role') == 'ADMIN_ROLE')) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
 
   deletePost(id: number) {
     this.route?.parent?.params.subscribe(
       (params) => {
         this.gamename = params['name'];
-        
+
         //this.id = params['id'];
         swalert.fire({
           title: '¿Estás seguro que quieres eliminarlo?',
@@ -65,8 +66,10 @@ isOwnerOrAdmin(): boolean{
               .subscribe({
                 next: (resp) => {
                   console.log(resp);
-                  
+
                   swalert.fire('Eliminado!', '', 'success')
+                  console.log("NO SALE");
+
                   this.reload.emit('Este dato viajará hacia el padre');
                 },
                 error: (error) => {
@@ -81,31 +84,31 @@ isOwnerOrAdmin(): boolean{
         });
       })
   }
- 
-  showPost(id: number){
-    if(!this.authServ.isAuthenticated()){
+
+  showPost(id: number) {
+    if (!this.authServ.isAuthenticated()) {
       this.router.navigate(['auth/login']);
-    }else{
-    this.gamename = this.postsList[0].gamename.gamename    ;
-    this.commServ.post(id, this.gamename)
-    .subscribe({
-      next: (resp) => {
-        this.post = resp;
-        swalert.fire({
-          icon: 'info',
-          title: `${resp.title}`,
-          html: ` <div style="text-align: left; margin-left: 20px;">
+    } else {
+      this.gamename = this.postsList[0].gamename.gamename;
+      this.commServ.post(id, this.gamename)
+        .subscribe({
+          next: (resp) => {
+            this.post = resp;
+            swalert.fire({
+              icon: 'info',
+              title: `${resp.title}`,
+              html: ` <div style="text-align: left; margin-left: 20px;">
                   <p><b>Usuario: </b> ${resp.username.username} </p> <br> 
                   <p><b>Usuario en el juego:</b> ${resp.nickgame} </p> <br> 
                   <p><b>Usuario en el juego:</b> ${resp.region} </p> <br> 
                   <p><b>Mensaje:</b> ${resp.description} </p>
                   </div>`,
-     
-        })
-      }
 
-    })
-  }
+            })
+          }
+
+        })
+    }
   }
 
 

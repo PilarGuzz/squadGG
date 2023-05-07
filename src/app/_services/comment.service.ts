@@ -25,9 +25,9 @@ export class CommentService {
     return this.http.post<Content>(`${this.URL}/${game}`, post, this.httpOptions);
   }
 
-  deletePost(id:number, game:string): Observable<string> {    
+  deletePost(id:number, game:string): Observable<any> {    
     // @ts-ignore
-    return this.http.delete<any>(`${this.URL}/${game}/${id}`, {responseType: 'text'})
+    return this.http.delete<any>(`${this.URL}/${game}/${id}`)
    
   }
 

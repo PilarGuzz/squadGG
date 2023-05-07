@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 
 const swalert = require('sweetalert2')
 
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     isLoggedIn: boolean = false;
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+              private router: Router,
+              private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
 
@@ -53,6 +55,11 @@ export class LoginComponent implements OnInit {
           }
       }
     })
+  }
+
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(() => this.router.navigate(['/']));
   }
 
 

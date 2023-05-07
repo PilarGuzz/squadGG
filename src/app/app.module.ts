@@ -13,6 +13,7 @@ import { TokenGuard } from './_guards/token.guard';
 import { ProfileModule } from './profile/profile.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,20 @@ import { AdminModule } from './admin/admin.module';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
-  }, RolGuard, TokenGuard],
+  },
+  {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: true, //keeps the user signed in
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('807418543433-0hjiibg74ddg11liscb6tlnu774g41v7.apps.googleusercontent.com') // your client id
+        }
+      ]
+    }
+  },
+   RolGuard, TokenGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
