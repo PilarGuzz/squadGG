@@ -8,8 +8,8 @@
       <div class="d-flex align-items-center">
         <div class="ml-auto">
 
-          <!-- *ngIf="isOwnerOrAdmin(comment.username)"  -->
-          <button class="btn btn-outline-danger btn-sm"  (click)="deletePost(comment.id)">Borrar</button>
+          <!--  -->
+          <button class="btn btn-outline-danger btn-sm" *ngIf="isOwnerOrAdmin(comment.username)"  (click)="deletePost(comment.id)">Borrar</button>
         </div>
       </div>
     </div>

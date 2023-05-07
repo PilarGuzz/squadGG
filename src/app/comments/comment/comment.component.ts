@@ -4,6 +4,8 @@ import { Post } from 'src/app/_interfaces/post.interface';
 import { Content } from 'src/app/_interfaces/postDTO';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CommentService } from '../../_services/comment.service';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 const swalert = require('sweetalert2')
 
 
@@ -36,14 +38,13 @@ export class CommentComponent implements OnInit {
 
   }
 
-  // isOwnerOrAdmin(owner: string): boolean {
-  //   console.log(owner);
+  isOwnerOrAdmin(owner: string): boolean {
 
-  //   if (this.authServ.isAuthenticated() && (owner == this.authServ.user.username || localStorage.getItem('role') == 'ADMIN_ROLE')) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+    if (this.authServ.isAuthenticated() && (owner == localStorage.getItem('user')|| localStorage.getItem('role') == 'ADMIN_ROLE')) {
+      return true;
+    }
+    return false;
+  }
 
 
   deletePost(id: number) {

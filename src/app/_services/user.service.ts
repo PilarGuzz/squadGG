@@ -44,8 +44,8 @@ export class UserService {
     if (form.value.birth) {
       formData.append('birth', form.value.birth);
     }
-// @ts-ignore
-    return this.http.put(this.URL + '/' + username, formData, {responseType: 'text'})
+
+    return this.http.put(this.URL + '/' + username, formData)
   }
 
   updateAdmin(username: string, role: string): Observable<any>{
