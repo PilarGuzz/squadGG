@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
@@ -19,12 +19,15 @@ export class LoginComponent implements OnInit {
     password!: string;
     isLoggedIn: boolean = false;
 
+    auth2: any;
+    @ViewChild('loginRef', {static: true }) loginElement!: ElementRef;
+
   constructor(private authService: AuthService,
               private router: Router,
               private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
-
+    this.googleAuthSDK();
 
   }
   notValidUsername(): boolean{
@@ -60,6 +63,50 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(() => this.router.navigate(['/']));
+  }
+
+  callLoginButton() {
+
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleAuthUser:any) => {
+
+        let profile = googleAuthUser.getBasicProfile();
+        console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+
+       /* Write Your Code Here */
+
+      }, (error:any) => {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+ 
+  }
+
+  googleAuthSDK() {
+
+    (<any>window)['googleSDKLoaded'] = () => {
+      (<any>window)['gapi'].load('auth2', () => {
+        this.auth2 = (<any>window)['gapi'].auth2.init({
+          client_id: '807418543433-0hjiibg74ddg11liscb6tlnu774g41v7.apps.googleusercontent.com',
+          cookiepolicy: 'single_host_origin',
+          scope: 'profile email'
+        });
+        this.callLoginButton();
+      });
+    }
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement('script'); 
+      js.id = id;
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      fjs?.parentNode?.insertBefore(js, fjs);
+    }(document, 'script', 'google-jssdk'));
+
   }
 
 

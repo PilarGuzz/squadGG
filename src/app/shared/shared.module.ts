@@ -4,13 +4,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
 @NgModule({
   declarations: [
     NotFoundComponent,
-    NavBarComponent
+    NavBarComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     NavBarComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

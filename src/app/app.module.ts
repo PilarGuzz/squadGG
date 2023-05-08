@@ -14,6 +14,7 @@ import { ProfileModule } from './profile/profile.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { SpinnerInterceptor } from './shared/spinner/spinner.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,13 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
       ]
     }
   },
+   {
+    provide:HTTP_INTERCEPTORS,
+    useClass: SpinnerInterceptor,
+    multi: true
+   },
+
+
    RolGuard, TokenGuard],
   bootstrap: [AppComponent]
 })
