@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { SpinnerInterceptor } from './shared/spinner/spinner.interceptor';
+import { ContactComponent } from './contact/contact.component';
+import { ContactModule } from './contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { SpinnerInterceptor } from './shared/spinner/spinner.interceptor';
     GamesModule,
     ProfileModule,
     AdminModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ContactModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

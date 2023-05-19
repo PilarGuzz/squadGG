@@ -23,6 +23,11 @@ export class UserService {
     return this.http.get<UserApi>(this.URL+'?pageNumber='+pag+'&sizeNumber='+size)
   }
 
+  getUsersAdmin():Observable<UserApi>{
+
+    return this.http.get<UserApi>(this.urlAdmin)
+  }
+
   getUser(username:string |null):Observable<User>{
     
     return this.http.get<User>(this.URL+'/'+username)
