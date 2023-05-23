@@ -29,9 +29,9 @@
             <!-- Lista de favoritos -->
             <div class="mb-3 row">
                 <div class="input-group mb-1" *ngFor="let favorito of plays; let i = index">
-                    <input class="form-control" [(ngModel)]="favorito.gamename.gamename" name="favorito_{{i}}">
+                    <input class="form-control" [(ngModel)]="favorito.gamename" name="favorito_{{i}}">
         
-                    <button class="btn btn-outline-danger" (click)="delete(favorito.gamename.gamename)" type="button"> Eliminar </button>
+                    <button class="btn btn-outline-danger" (click)="delete(favorito.gamename)" type="button"> Eliminar </button>
                 </div>
         
             </div>

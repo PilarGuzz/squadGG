@@ -22,9 +22,15 @@ export class CommentsComponent implements OnInit {
   size: number = 5;
   page: number = 1;
   gamename: string = '';
-  maxPage: number = 10;
+  maxPage!: number;
 
-  constructor(private gameService: GamesService, private route: ActivatedRoute, private commentserice: CommentService, public authServ: AuthService, private router: Router) { }
+  //FILTROS
+  nivel: string | undefined;
+  nivelCompetitivo: string | undefined;
+  region: string | undefined;
+  texto: string | undefined;
+
+  constructor(private gameService: GamesService, private route: ActivatedRoute, private commentservice: CommentService, public authServ: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -49,7 +55,18 @@ export class CommentsComponent implements OnInit {
 
 
   cargarDatos() {
-    this.commentserice.postsList(this.page, this.size, this.game.gamename)
+    //Almacenamos los filtros
+    const filters = {
+      nivel: this.nivel,
+      nivelCompetitivo: this.nivelCompetitivo,
+      region: this.region,
+      texto: this.texto
+    };
+
+    this.commentservice.getPosts(this.game.gamename, this.page, this.size, filters.nivel,
+      filters.nivelCompetitivo,
+      filters.region,
+      filters.texto )
       .subscribe({
         next: (resp) => {
           this.postsList = resp.content;
@@ -74,20 +91,54 @@ export class CommentsComponent implements OnInit {
       })
   }
 
-  reloadData(msj: string){
-    this.cargarDatos()
-    
-  }
+  handleFiltersChanged(filters: any) {
+    this.nivel = filters.nivel;
+    this.nivelCompetitivo = filters.nivelCompetitivo;
+    this.region = filters.region;
+    this.texto = filters.texto;
   
+    this.cargarDatos();
+  }
+
+  previousPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.cargarDatos();
+    }
+  }
+
+  nextPage() {
+    if (this.page < this.maxPage) {
+      this.page++;
+      this.cargarDatos();
+    }
+  }
+
+  goToPage(pages: number) {
+    if (pages >= 1 && pages <= this.maxPage) {
+      this.page = pages;
+      this.cargarDatos();
+    }
+  }
+
+  getPagesArray(): number[] {
+    return Array.from({ length: this.maxPage }, (_, i) => i + 1);
+  }
+
+  reloadData(msj: string) {
+    this.cargarDatos()
+
+  }
+
   onButtonClick() {
-    
+
     if (!localStorage.getItem('jwt')) {
       this.router.navigate(['auth/login']);
     } else {
-      this.router.navigate(['/game/'+this.gamename+'/posts/add'])
-        }
+      this.router.navigate(['/game/' + this.gamename + '/posts/add'])
+    }
   }
-  
+
 
 
 }

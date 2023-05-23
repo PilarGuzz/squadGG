@@ -9,21 +9,21 @@
         <div class="list-group list-reset">
             <div class="text-white">Nivel</div>
             <input class="list-group-item list-group-item-action"
-            placeholder="60"/>
+            [(ngModel)]="nivel" (ngModelChange)="updateFilters()" placeholder="60"/>
            
         </div>
         <br>
         <div class="list-group list-reset">
             <div class="text-white">Nivel Competitivo</div>
             <input class="list-group-item list-group-item-action" 
-            placeholder="Gold"          />
+            [(ngModel)]="nivelCompetitivo" (ngModelChange)="updateFilters()" placeholder="Gold" />
            
         </div>
         <br>
         <div class="list-group list-reset">
             <div class="text-white">Región </div>
             <input class="list-group-item list-group-item-action" 
-            placeholder="EUW"   />
+            [(ngModel)]="region" (ngModelChange)="updateFilters()" placeholder="EUW"/>
             
                 
             
@@ -32,7 +32,7 @@
         <div class="list-group list-reset">
             <div class="text-white">Texto</div>
             <input class="list-group-item list-group-item-action" 
-            placeholder="palabras clave"          />
+            [(ngModel)]="texto" (ngModelChange)="updateFilters()" placeholder="palabras clave"/>
           
         </div>
     </div>

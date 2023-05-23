@@ -8,8 +8,8 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface Play {
-    username: Username;
-    gamename: Gamename;
+    username: string;
+    gamename: string;
 }
 
 export interface Gamename {

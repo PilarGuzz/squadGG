@@ -8,6 +8,9 @@ import { CommentComponent } from './comment/comment.component';
 import { CommentsComponent } from './comments.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -22,7 +25,11 @@ import { RouterModule } from '@angular/router';
     CommentsRoutingModule, 
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
+  ],
+   providers: [MatTableDataSource]
 })
 export class CommentsModule { }

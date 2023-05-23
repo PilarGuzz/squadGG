@@ -82,7 +82,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   isValidField(field:string){
-    return this.myForm.controls[field].errors
+    return this.myForm.controls[field]?.errors
     && this.myForm.controls[field].touched
   }
 

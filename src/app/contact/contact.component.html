@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <h1>Contacto</h1>
     <p>¡Estamos encantados de escucharte! Envíanos un mensaje utilizando el formulario a continuación.</p>
 
@@ -17,4 +17,64 @@
         </div>
         <button type="submit" class="btn btn-primary">Enviar mensaje</button>
       </form>
+  </div> -->
+
+
+  
+<div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+  <div class="row gx-lg-5 align-items-center mb-5">
+
+
+      <div class="col-lg-8 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+          <div class="card bg-glass">
+              <div class="card-body px-4 py-5 px-md-5">
+                  <h2>Contacto</h2>
+                  <p>¡Estamos encantados de escucharte! Envíanos un mensaje utilizando el siguiente formulario.</p>
+
+                  <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+                      <!-- ----------- Campo de motivo ---------------- -->
+                      <div class="form-outline mb-4">
+
+                        <label for="subject" class="form-label">Motivo</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required [(ngModel)]="formData.subject">
+
+                      </div>
+                      <!-- --------------- Campo de email -->
+                      <div class="form-outline mb-4">
+
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="formData.email">
+
+                      </div>
+
+                      <!-- -------------------------Campo de mensaje -->
+                      <div class="form-outline mb-4">
+
+                        <label for="message" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required [(ngModel)]="formData.message"></textarea>
+                      </div>
+
+
+                      <!-- Submit button -->
+                     
+                      <button type="submit" class="btn btn-primary btn-block mb-4">Enviar mensaje</button>
+                 
+                      &nbsp;&nbsp;
+                      <a [routerLink]="['/']">
+
+                          <button  class="btn btn-secondary btn-block mb-4" >
+                              Cancelar
+                          </button>
+                      </a>
+
+                      
+                  </form>
+              </div>
+          </div>
+      </div>
   </div>
+</div>
+<!-- Section: Design Block -->

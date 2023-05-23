@@ -53,7 +53,7 @@ export class GameProfileComponent implements OnInit {
       this.playService.deleteGame(fav)
       .subscribe(
         data => {
-          const index = this.plays.findIndex(game => game.gamename.gamename === fav);
+          const index = this.plays.findIndex(game => game.gamename === fav);
 
           if (index !== -1) {
             this.plays.splice(index, 1);
