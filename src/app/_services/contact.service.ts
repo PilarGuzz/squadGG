@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class ContactService {
 
   URL: string = 'http://localhost:8081/contact'
-  //URL: string = environment.apiUrl + '/games'
+  //URL: string = environment.apiUrl + '/contact'
 
   constructor(private http: HttpClient) { }
 
