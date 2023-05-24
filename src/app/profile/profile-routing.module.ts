@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RolGuard } from '../_guards/rol.guard';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: ':username/edit', canActivate: [RolGuard],
         component: EditProfileComponent
+      },
+      {
+        path: ':username/editPass', canActivate: [RolGuard],
+        component: EditPasswordComponent
       }
   ]
   }

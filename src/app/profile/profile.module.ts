@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DataProfileComponent,
     GameProfileComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    EditPasswordComponent
     ],
   imports: [
     CommonModule,
