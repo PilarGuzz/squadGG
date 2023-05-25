@@ -16,12 +16,6 @@ const routes: Routes = [
       {
         path: ':name/posts',
         loadChildren: () => import('../comments/comments.module').then(m => m.CommentsModule)
-      },
-      { path: 'admin/add',
-      component: AddGameComponent
-      },
-      { path: 'admin/edit',
-      component: DatatableGameComponent
       }
 
   ]}

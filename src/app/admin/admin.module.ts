@@ -10,6 +10,9 @@ import { RouterModule } from '@angular/router';
 import { DatatableUsersComponent } from './users/datatable-users/datatable-users.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AdminComponent } from './admin.component';
+import { PrincipalComponent } from './principal/principal.component';
+import { ReportsComponent } from './reports/reports.component';
 
 
 
@@ -17,8 +20,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AddGameComponent,
-  DatatableGameComponent,
-  DatatableUsersComponent
+    DatatableGameComponent,
+    DatatableUsersComponent,
+    AdminComponent,
+    PrincipalComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,

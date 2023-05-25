@@ -1,0 +1,7 @@
+.min-vh-90{
+    height: 90vh;
+    background-color: #212529d4  !important;
+    /* border-radius: 10px; */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
