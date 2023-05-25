@@ -23,10 +23,13 @@ export class GamesComponent implements OnInit {
 
 
   ngOnInit(): void {
+    //window.location.reload()
+
     this.role = localStorage.getItem('role');
     this.cargarDatos();
     
   }
+  
 
   public cargarDatos(): void {
     this.gameService.getGames()
@@ -35,6 +38,8 @@ export class GamesComponent implements OnInit {
 
     });
   };
+  
+  
 
  
 

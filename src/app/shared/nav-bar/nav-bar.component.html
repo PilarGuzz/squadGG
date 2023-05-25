@@ -87,14 +87,14 @@
               <a class="nav-link"  [routerLink]="['/contact']">Contacto</a>
             </li>
 
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto" *ngIf="user">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="assets/img/squadGGlogo.png" alt="Foto de perfil" class="navbar-profile-pic">
+                  <img src="{{user.img}}" alt="Foto de perfil" class="navbar-profile-pic">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                   <li class="nav-item">
-                    <a class="dropdown-item"href="#" [routerLink]="['/profile/', username$|async]">Perfil</a>
+                    <a class="dropdown-item"href="#" [routerLink]="['/profile/', username]">Perfil</a>
                   </li>
                   <li class="nav-item">
                     <a class="dropdown-item" (click)="onlogOut()" [routerLink]="['/']" href="#">Cerrar Sesión</a>

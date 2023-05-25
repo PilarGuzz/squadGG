@@ -73,4 +73,23 @@ export class UserService {
 
   }
 
+  updatePass(username : string, currentpassword : string, password : string): Observable<any>{
+    const formData = new FormData();
+    formData.append('currentpassword', currentpassword);
+    formData.append('password', password);
+
+console.log(username);
+
+    return this.http.put(this.URL + '/' + username + '/editpass', formData)
+
+  }
+
+  checkPass(username: string, currentpassword : string ): Observable<any>{
+    const formData = new FormData();
+    formData.append('currentpassword', currentpassword);
+
+    return this.http.post(this.URL + '/' + username + '/checkpass', formData)
+
+  }
+
 }

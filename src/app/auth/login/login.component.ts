@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
+import { CommonService } from 'src/app/_services/common.service';
 
 const swalert = require('sweetalert2')
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
+              private commonService: CommonService,
               private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
     .subscribe({
       next: (resp) =>{
         this.isLoggedIn= true;
+        this.sendMessage();
         if (resp) this.router.navigate(['/game']);
           else {
             this.username="";
@@ -59,6 +62,11 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
+  sendMessage(): void {
+    // send message to subscribers via observable subject
+    this.commonService.sendUpdate('Message from Sender Component to Receiver Component!');
+}
 
   // loginWithGoogle(): void {
   //   this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)

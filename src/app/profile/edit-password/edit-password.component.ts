@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,27 +16,54 @@ const swalert = require('sweetalert2')
 export class EditPasswordComponent implements OnInit {
 
   user!: User;
+  resultMessage!: string;
+
+  username: string | null = localStorage.getItem('user');
 
   myForm: FormGroup = this.fb.group({
-    currentpassword: ['', [ this.isCurrentPass]],
+    currentpassword: ['', []],
     password: ['', [ Validators.minLength(6), this.validatePassword]],
     repeatpassword: ['', [ this.matchPassword]],
   });
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+    this.isCurrentPass = this.isCurrentPass.bind(this);
+   }
 
   ngOnInit(): void {
   }
 
   //TO DO
   private isCurrentPass(control: FormControl) {
-    const passwordControl = control.root.get('password');
-    if (!passwordControl) {
+    const passwordControl = control.root.get('currentpassword');
+   // this.username = localStorage.getItem('user');
+    //console.log(this.username+ "2");
+
+    if (!passwordControl ||this.username == null ) {
       return null;
     }
-    const password = passwordControl.value;
-    const confirmPassword = control.value;
-    return password === confirmPassword ? null : { mismatch: true };
+    this.userService.checkPass(this.username, control.value)
+    .subscribe(
+      (response: HttpResponse<any>) => {
+        if (response.status === 200) {
+          this.resultMessage = response.body;
+          return true;
+        } else if (response.status === 401) {
+          this.resultMessage = response.body;
+          return false;
+        } else {
+          this.resultMessage = 'Error al verificar la contraseña';
+          return false;
+        }
+      },
+      (error: any) => {
+        console.error(error);
+        this.resultMessage = 'Error al verificar la contraseña';
+        return false;
+      }
+    );
+    return false;
+
   }
 
   private validatePassword(control: FormControl) {
@@ -73,16 +101,19 @@ export class EditPasswordComponent implements OnInit {
   }
 
   private send() {
-    this.userService.updateUser(this.user.username, this.myForm)
-      .subscribe({
-        next: (resp) => {
-          swalert.fire('Usuario actualizado', 'Se ha actualizado el usuario correctamente', 'success')
-          this.router.navigateByUrl('/profile/this.user.username')
-        },
-        error: (error) => {
-          swalert.fire('Error', error.error.msg, 'error')
-        }
-      });
+    if(this.username != null){
+      this.userService.updatePass(this.username, this.myForm.value.currentpassword, this.myForm.value.password)
+        .subscribe({
+          next: (resp) => {
+            swalert.fire('Contraseña actualizado', 'Se ha actualizado la contraseña correctamente', 'success')
+            this.router.navigateByUrl('/profile/this.user.username')
+          },
+          error: (error) => {
+            swalert.fire('Error', this.resultMessage, 'error')
+          }
+        });
+
+    }
   }
   
   onSubmit(){
