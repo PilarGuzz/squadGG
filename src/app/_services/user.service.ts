@@ -78,9 +78,9 @@ export class UserService {
     formData.append('currentpassword', currentpassword);
     formData.append('password', password);
 
-console.log(username);
+  console.log(username);
 
-    return this.http.put(this.URL + '/' + username + '/editpass', formData)
+    return this.http.post(this.URL + '/' + username + '/editpass', formData)
 
   }
 

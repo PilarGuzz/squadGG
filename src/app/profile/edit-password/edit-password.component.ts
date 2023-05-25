@@ -106,7 +106,9 @@ export class EditPasswordComponent implements OnInit {
         .subscribe({
           next: (resp) => {
             swalert.fire('Contraseña actualizado', 'Se ha actualizado la contraseña correctamente', 'success')
-            this.router.navigateByUrl('/profile/this.user.username')
+            const url = '/profile/' + this.username; // Construye la URL completa
+            this.router.navigateByUrl(url); // Redirecciona a la URL construida
+           // this.router.navigateByUrl('/profile/this.user.username')
           },
           error: (error) => {
             swalert.fire('Error', this.resultMessage, 'error')

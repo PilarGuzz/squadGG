@@ -17,6 +17,7 @@ export class EditProfileComponent implements OnInit {
 
   user!: User;
   // img?: File;
+  loaded :  boolean = false;
 
   myForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -43,6 +44,7 @@ export class EditProfileComponent implements OnInit {
             password: ['', [  this.validatePassword]],
             repeatpassword: ['', [ this.matchPassword]]
           })
+          this.loaded = true;
         } ,
         error: (error) => console.log(error)
         
@@ -95,8 +97,8 @@ export class EditProfileComponent implements OnInit {
       .subscribe({
         next: (resp) => {
           swalert.fire('Usuario actualizado', 'Se ha actualizado el usuario correctamente', 'success')
-          this.router.navigateByUrl('/profile/this.user.username')
-        },
+          const url = '/profile/' + this.user.username; // Construye la URL completa
+          this.router.navigateByUrl(url);        },
         error: (error) => {
           swalert.fire('Error', error.error.msg, 'error')
         }
@@ -114,6 +116,7 @@ export class EditProfileComponent implements OnInit {
   onSubmit(){
     if (this.save()) {
       this.send();
+      this.loaded = false;
     }
   }
 }
