@@ -72,6 +72,7 @@ export class GameProfileComponent implements OnInit {
         data => {
           
           this.plays.push(data);
+          this.ngOnInit();
         }
       );
     }
