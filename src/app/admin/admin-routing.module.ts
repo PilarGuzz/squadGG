@@ -6,14 +6,16 @@ import { DatatableGameComponent } from './game/datatable/datatable-game.componen
 import { ReportsComponent } from './reports/reports.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { AdminComponent } from './admin.component';
+import { RolGuard } from '../_guards/rol.guard';
+import { TokenGuard } from '../_guards/token.guard';
 
 const routes: Routes = [
 
   { path:'',
- // component: PrincipalComponent,
+    component: AdminComponent,
     children: [
       { path: 'dashboard',
-      component: AdminComponent
+      component: PrincipalComponent
       },
       { path: 'users',
       component: DatatableUsersComponent
@@ -28,14 +30,13 @@ const routes: Routes = [
       component: ReportsComponent
       }
 
-  ]}
+  ], canActivate: [TokenGuard]}
 ]
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forChild(routes)
-
-  ]
+    RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class AdminRoutingModule { }

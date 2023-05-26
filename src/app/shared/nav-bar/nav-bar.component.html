@@ -15,30 +15,10 @@
             </li>
             
             
-            <li class="nav-item" *ngIf="!(isAdmin$|async)">
-              <a class="nav-link " role="button" 
-                [routerLink]="['/game/']">
-                  Games
-                </a>
-            </li>
-
-            <div class="dropdown" *ngIf="(isAdmin$|async)">
-              <a class="dropdown-toggle nav-link"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Administrar Juegos
-              </a>
-            
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" [routerLink]="['/game/']">Ver</a></li>
-                <li><a class="dropdown-item" [routerLink]="['/admin/game/edit']" href="#">editar</a></li>
-                <li><a class="dropdown-item" [routerLink]="['/admin/game/add']" href="#">Añadir juego</a></li>
-              </ul>
-
-            </div>
-            
             <li class="nav-item" *ngIf="(isAdmin$|async)">
               <a class="nav-link " role="button" 
-                [routerLink]="['/admin/users']">
-                  Administrar Usuarios
+                [routerLink]="['/admin/dashboard']">
+                  Administrador
                 </a>
             </li>
 

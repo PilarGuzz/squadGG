@@ -121,4 +121,17 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+a:hover{
+
+    color: #ffffff;
+    text-shadow: rgb(140, 47, 253) 1px 0 10px;  } 
+ 
+  
+  a:active,
+  a:focus {
+    color: #ffffff;
+    text-shadow: rgb(140, 47, 253) 1px 0 10px;  
+  }
+
   
