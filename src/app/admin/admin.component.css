@@ -1,5 +1,5 @@
 .min-vh-90{
-    height: 90vh;
+    /* height: 90vh; */
     background-color: #212529d4  !important;
     /* border-radius: 10px; */
     border-top-right-radius: 10px;
@@ -45,5 +45,6 @@ a:hover{
   }
 
   .main{
-    background-color: #c9cfff42;
+    /* background-color: #c9cfff42; */
+    padding: 0px;
   }
