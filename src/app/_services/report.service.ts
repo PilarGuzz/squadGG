@@ -16,6 +16,11 @@ export class ReportService {
     return this.http.post(this.URL, report);
   }
 
+  getReports(){
+    return this.http.get(this.URL);
+
+  }
+
 
 
 }

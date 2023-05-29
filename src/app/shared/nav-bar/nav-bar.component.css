@@ -1,5 +1,12 @@
 .navbar{
     font-size: larger;
+   
+}
+.navbar-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media (max-width: 767px) {
@@ -12,6 +19,13 @@
     .navbar-nav {
       margin-top: 10px;
       margin-bottom: 10px;
+    }
+
+    .navbar-title {
+      position: static; /* Cambiado */
+      transform: none; /* Cambiado */
+      text-align: center;
+      margin-top: 10px;
     }
 
   }

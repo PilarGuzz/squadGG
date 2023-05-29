@@ -8,6 +8,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { AdminComponent } from './admin.component';
 import { RolGuard } from '../_guards/rol.guard';
 import { TokenGuard } from '../_guards/token.guard';
+import { GamesComponent } from '../games/games.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,9 @@ const routes: Routes = [
       { path: 'users',
       component: DatatableUsersComponent
       },
+      { path: 'game',
+      component: GamesComponent
+      },
       { path: 'game/add',
       component: AddGameComponent
       },
@@ -30,7 +34,7 @@ const routes: Routes = [
       component: ReportsComponent
       }
 
-  ], canActivate: [TokenGuard]}
+  ]}
 ]
 
 @NgModule({

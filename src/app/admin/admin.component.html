@@ -2,9 +2,11 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-90">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-902">
-                
-                    <span class="a-zona-admin d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none fs-5 d-none d-sm-inline">Zona Administrador</span>
-               
+
+                <span
+                    class="a-zona-admin d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none fs-5 d-none d-sm-inline">Zona
+                    Administrador</span>
+
                 <hr>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -13,7 +15,7 @@
                         </a>
                     </li>
                     <hr>
-                    
+
                     <li>
                         <a href="#" class="nav-link px-0 align-middle" [routerLink]="['/admin/users']">
                             <i class="fas fa-users"></i><span class="ms-1 d-none d-sm-inline">Usuarios</span></a>
@@ -22,37 +24,47 @@
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fas fa-gamepad"></i> <span class="ms-1 d-none d-sm-inline">Games</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0" [routerLink]="['/admin/game/edit']"> <span class="d-none d-sm-inline">Administrar</span></a>
+                                <a href="#" class="nav-link px-0" [routerLink]="['/admin/game']"> <span
+                                        class="d-none d-sm-inline">Ver</span></a>
+                            </li>
+
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0" [routerLink]="['/admin/game/edit']"> <span
+                                        class="d-none d-sm-inline">Administrar</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0" [routerLink]="['/admin/game/add']"> <span class="d-none d-sm-inline">Añadir</span></a>
+                                <a href="#" class="nav-link px-0" [routerLink]="['/admin/game/add']"> <span
+                                        class="d-none d-sm-inline">Añadir</span></a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fas fa-flag"></i><span class="ms-1 d-none d-sm-inline">Reportes</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Pendientes</span></a>
+                                <a href="#" class="nav-link px-0"> <span
+                                        class="d-none d-sm-inline">Pendientes</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Solucionados</span></a>
+                                <a href="#" class="nav-link px-0"> <span
+                                        class="d-none d-sm-inline">Solucionados</span></a>
                             </li>
-                            
+
                         </ul>
                     </li>
-                    
+
                 </ul>
-                
-                
+
+
             </div>
         </div>
 
 
         <!-- ZONA DE CONTENIDO -->
-        <div class="col py-3">
+        <div class="main col py-3">
             <router-outlet></router-outlet>
         </div>
     </div>

@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AdminComponent } from './admin.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { ReportsComponent } from './reports/reports.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts'; 
 
 
 
@@ -34,7 +35,8 @@ import { ReportsComponent } from './reports/reports.component';
     MatTableModule,
     MatSortModule,
     AdminRoutingModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxChartsModule
   ],
   providers: [MatTableDataSource],
 })

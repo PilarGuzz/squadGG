@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/_services/user.service';
-import { UserApiContent } from 'src/app/_interfaces/user.interface';
+import { UserApiContent, UserToAdminContent } from 'src/app/_interfaces/user.interface';
 
 const swalert = require('sweetalert2')
 
@@ -16,13 +16,13 @@ const swalert = require('sweetalert2')
 })
 export class DatatableUsersComponent implements OnInit {
 
-  dataSource!: MatTableDataSource<UserApiContent>;
+  dataSource!: MatTableDataSource<UserToAdminContent>;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true })
   sort: MatSort = new MatSort;
 
-  displayedColumns: string[] = ['img', 'username', 'email', 'birth', 'role', 'enabled' ];
+  displayedColumns: string[] = ['img', 'username', 'email', 'birth', 'role', 'active' ];
   page:number = 1;
   size:number = 10;
   totalElements: any;
@@ -43,7 +43,7 @@ export class DatatableUsersComponent implements OnInit {
   
 
   cargarDatos(): void {
-    this.userService.getUsers(this.size, this.page)
+    this.userService.getUsersAdmin(this.size, this.page)
     .subscribe(datos => {
       this.dataSource = new MatTableDataSource(datos.content);
       this.totalElements = datos.totalElements;

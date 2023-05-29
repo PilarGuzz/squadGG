@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import { User, UserApi } from '../_interfaces/user.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User, UserApi, UserToAdminApi } from '../_interfaces/user.interface';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
 
@@ -23,9 +23,9 @@ export class UserService {
     return this.http.get<UserApi>(this.URL+'?pageNumber='+pag+'&sizeNumber='+size)
   }
 
-  getUsersAdmin():Observable<UserApi>{
+  getUsersAdmin(size:number,pag:number):Observable<UserToAdminApi>{
 
-    return this.http.get<UserApi>(this.urlAdmin)
+    return this.http.get<UserToAdminApi>(this.urlAdmin+'?pageNumber='+pag+'&sizeNumber='+size)
   }
 
   getUser(username:string |null):Observable<User>{

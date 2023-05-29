@@ -13,7 +13,12 @@
             <li class="nav-item">
               <a class="nav-link"  [routerLink]="['/']">Home</a>
             </li>
-            
+            <li class="nav-item" *ngIf="!(isAdmin$|async)">
+              <a class="nav-link " role="button" 
+                [routerLink]="['/game']">
+                  Games
+                </a>
+            </li>
             
             <li class="nav-item" *ngIf="(isAdmin$|async)">
               <a class="nav-link " role="button" 

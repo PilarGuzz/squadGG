@@ -43,3 +43,7 @@ a:hover{
     color: #ffffff;
     text-shadow: rgb(140, 47, 253) 1px 0 10px;  
   }
+
+  .main{
+    background-color: #c9cfff42;
+  }
