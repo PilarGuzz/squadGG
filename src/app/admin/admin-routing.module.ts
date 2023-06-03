@@ -9,6 +9,7 @@ import { AdminComponent } from './admin.component';
 import { RolGuard } from '../_guards/rol.guard';
 import { TokenGuard } from '../_guards/token.guard';
 import { GamesComponent } from '../games/games.component';
+import { CommentsComponent } from '../comments/comments.component';
 
 const routes: Routes = [
 
@@ -29,6 +30,10 @@ const routes: Routes = [
       },
       { path: 'game/edit',
       component: DatatableGameComponent
+      },
+      { path: 'game/:name/posts',
+      loadChildren: () => import('../comments/comments.module').then(m => m.CommentsModule),
+        pathMatch: 'full'
       },
       { path: 'report',
       component: ReportsComponent

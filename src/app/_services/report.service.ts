@@ -22,6 +22,14 @@ export class ReportService {
 
   }
 
+  changeStatus(id: number, newStatus: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('newStatus', newStatus);
+
+    return this.http.put(this.URL +"/"+ id, formData);
+
+  }
+
 
 
 }

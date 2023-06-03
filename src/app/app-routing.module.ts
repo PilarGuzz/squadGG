@@ -27,6 +27,11 @@ const routes: Routes = [
     canActivate: [TokenGuard]
   },
   {
+    path: 'friends',
+    loadChildren: () => import('./friends/friends.module').then(m => m.FriendsModule),
+    canActivate: [TokenGuard]
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     

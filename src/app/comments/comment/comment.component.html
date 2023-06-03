@@ -20,16 +20,22 @@
       <!-- <img src="../../../../assets/img/logo.png" class="img-fluid rounded-start" alt="..."> 
 
       <img src="{{comment.img}}" class="img-fluid rounded-start" alt="...">-->
-      <h5 class="card-title">{{comment.username}}</h5>
-      <p class="card-text"> <b>Nombre de usuario en el juego: </b> {{comment.nickgame}}</p>
-      <p class="card-text"> <b>Nivel de usuario en el juego: </b> {{comment.levelingame}}</p>
-      <p class="card-text"> <b>Nivel de usuario en competitivo: </b> {{comment.ranklevel}}</p>
+      <h5 class="card-title">
+        <button class="btn btn-outline-primary " (click)="addFriend(comment.username)">
+          <i class="fa-solid fa-user-plus"></i>
+          {{comment.username}}
+        </button>
+      </h5>
+      <!-- <p class="card-text"> <b>Nombre de usuario en el juego: </b> {{comment.nickgame}}</p> -->
+      <p class="card-text"> <b>Región: </b>{{comment.region}}</p>
+      
     </div>
   </div>
   <div class="col-md-8">
     <div class="card-body">
-      <p class="card-text"> <b>Región: </b>{{comment.region}}</p>
-      <button  (click)="showPost(comment.id)"> Ver más...</button>
+      <p class="card-text"> <b>Nivel de usuario en el juego: </b> {{comment.levelingame}}</p>
+      <p class="card-text"> <b>Nivel de usuario en competitivo: </b> {{comment.ranklevel}}</p>
+      <button class="btn btn-outline-dark"  (click)="showPost(comment.id)"> Ver más...</button>
       <!-- <p class="card-text"> <b>Mensaje: </b>{{comment.description}}</p> -->
       </div>
     </div>

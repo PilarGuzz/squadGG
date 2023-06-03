@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { CommentService } from '../../_services/comment.service';
 import { ReportService } from 'src/app/_services/report.service';
 import { ReportDTO } from 'src/app/_interfaces/reportDTO';
+import { FriendshipService } from 'src/app/_services/friendship.service';
 
 const swalert = require('sweetalert2')
 
@@ -24,8 +25,9 @@ export class CommentComponent implements OnInit {
   post!: Content;
 
 
-  constructor(private route: ActivatedRoute, private commServ: CommentService, 
-    private authServ: AuthService, private router: Router, private reportServ: ReportService) { }
+  constructor(private route: ActivatedRoute, private commServ: CommentService,
+    private authServ: AuthService, private router: Router, private reportServ: ReportService,
+    private friendshipSrv: FriendshipService) { }
 
   ngOnInit(): void {
 
@@ -86,26 +88,13 @@ export class CommentComponent implements OnInit {
       })
   }
 
-  async reportPost(id: any){
+  async reportPost(id: any) {
     /**
      * Comprobamos si esta logueado,
      * si no, se le da la opcion de ir al login o registrarse
      */
     if (!this.authServ.isAuthenticated()) {
-      swalert.fire({
-        title: 'Necesitas estar logueado para reportar',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Login',
-        denyButtonText: `Registro`,
-      }).then((result: any) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          this.router.navigate(['auth/login']);
-        } else if (result.isDenied) {
-          this.router.navigate(['auth/registrer']);
-        }
-      })
+      this.needLogin('Necesitas estar logueado para reportar');
 
       /**
        * Se muestra el formulario de reporte si esta logueado
@@ -124,10 +113,10 @@ export class CommentComponent implements OnInit {
       const swalResult = await swalert.fire({
         title: 'Reportar',
         html:
-        '<select id="swal-select" class="swal2-select">' +
-        selectOptions.map(option => `<option value="${option.value}">${option.display}</option>`).join('') +
-        '</select>' +
-        '<textarea id="swal-textarea" class="swal2-textarea"></textarea>',
+          '<select id="swal-select" class="swal2-select">' +
+          selectOptions.map(option => `<option value="${option.value}">${option.display}</option>`).join('') +
+          '</select>' +
+          '<textarea id="swal-textarea" class="swal2-textarea"></textarea>',
         focusConfirm: false,
         preConfirm: () => {
           return [
@@ -138,7 +127,7 @@ export class CommentComponent implements OnInit {
       });
       if (swalResult.isConfirmed) {
 
-        
+
         const [selectedOption, message] = swalResult.value;
         const formData = new FormData();
         formData.append('user', localStorage.getItem('user') ?? '');
@@ -146,29 +135,19 @@ export class CommentComponent implements OnInit {
         formData.append('reason', selectedOption);
         formData.append('message', message);
 
-        // const report : ReportDTO = {
-        //   user: localStorage.getItem('user'),
-        //   post:  id,
-        //   reason:  selectedOption,
-        //   message: message
-        // };
-       // console.log(report);
         this.reportServ.sendReport(formData)
-        .subscribe({
-          next: (resp) => {
-            console.log(resp);
+          .subscribe({
+            next: (resp) => {
 
-            swalert.fire('Reportado!', '', 'success')
+              swalert.fire('Reportado!', '', 'success')
 
-           // this.reload.emit('Este dato viajará hacia el padre');
-          },
-          error: (error) => {
-            console.log(error);
-          }
+            },
+            error: (error) => {
+              console.log(error);
+            }
 
-        })
-        
-        // Hacer algo con la opción seleccionada y el mensaje
+          })
+
       }
     }
 
@@ -176,7 +155,8 @@ export class CommentComponent implements OnInit {
 
   showPost(id: number) {
     if (!this.authServ.isAuthenticated()) {
-      this.router.navigate(['auth/login']);
+      this.needLogin('Necesitas estar logueado para ver más información');
+
     } else {
       this.gamename = this.postsList[0].gamename.gamename;
       this.commServ.post(id, this.gamename)
@@ -187,9 +167,11 @@ export class CommentComponent implements OnInit {
               icon: 'info',
               title: `${resp.title}`,
               html: ` <div style="text-align: left; margin-left: 20px;">
-                  <p><b>Usuario: </b> ${resp.username.username} </p> <br> 
-                  <p><b>Usuario en el juego:</b> ${resp.nickgame} </p> <br> 
-                  <p><b>Usuario en el juego:</b> ${resp.region} </p> <br> 
+                  <p><b>Usuario SquadGG: </b> ${resp.username.username} </p> <br> 
+                  <p><b>Usuario en ${resp.gamename}:</b> ${resp.nickgame} </p> 
+                  <p><b>Region:</b> ${resp.region} </p> 
+                  <p class="card-text"> <b>Nivel de usuario en ${resp.gamename}: </b> ${resp.levelingame}</p>
+                  <p class="card-text"> <b>Nivel de usuario en competitivo: </b> ${resp.ranklevel}</p>
                   <p><b>Mensaje:</b> ${resp.description} </p>
                   </div>`,
 
@@ -200,5 +182,57 @@ export class CommentComponent implements OnInit {
     }
   }
 
+  addFriend(friend: string) {
+    if (!this.authServ.isAuthenticated()) {
+      this.needLogin('Necesitas estar logueado para agregar amigos');
+      
+    } else {
+      swalert.fire({
+        title: '¿Quieres enviar una petición de amistad a '+ friend + ' ?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        denyButtonText: `No`,
+      }).then((result: { isConfirmed: any; isDenied: any; }) => {
+        
+        if (result.isConfirmed) {
+          this.friendshipSrv.createRequest(friend)
+      .subscribe({
+        next: (resp) => {
+          this.post = resp;
+          swalert.fire('Petición enviada', '', 'success')
+        },
+        error: (error) => {
+          swalert.fire('No se ha podido enviar', '', 'info')
+        }
+
+      })
+        } else if (result.isDenied) {
+          swalert.fire('Petición no enviada', '', 'info')
+        }
+
+      });
+
+
+      
+
+    }
+  }
+
+  needLogin(message: string) {
+    swalert.fire({
+      title: message,
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Login',
+      denyButtonText: `Registro`,
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['auth/login']);
+      } else if (result.isDenied) {
+        this.router.navigate(['auth/registrer']);
+      }
+    })
+  }
 
 }

@@ -15,6 +15,7 @@ export class GamesComponent implements OnInit {
   
   games: Game[] = [];
   role: string | null = '';
+  isAdmin: boolean = false;
 
   displayedColumns: string[] = ['position', 'gamename', 'img'];
 
@@ -26,6 +27,9 @@ export class GamesComponent implements OnInit {
     //window.location.reload()
 
     this.role = localStorage.getItem('role');
+    if(this.role == "ADMIN_ROLE"){
+      this.isAdmin = true;
+    }
     this.cargarDatos();
     
   }

@@ -1,19 +1,20 @@
 <div *ngIf="allReports" class="py-3">
-    <div class="text-center text-white">
+  <div class="text-center text-white">
     <h1>Revisión de reportes</h1>
     <hr class="bg-light" style="height: 5px;">
-</div>
-    <div class="container py-1"  *ngFor="let report of allReports">
+  </div>
+  <div class="container py-1" *ngFor="let report of allReports">
 
-    
-    <div class="card mb-3" >
+
+    <div class="card mb-3">
       <div class="row g-0">
         <div class="card-header d-flex align-items-center justify-content-between">
           <p class="mb-0">{{report.status}}</p>
           <div class="d-flex align-items-center">
             <div class="ml-auto">
-              Cambiar estado: 
-              <select class="form-select" id="statusSelect" [(ngModel)]="report.status">
+              Cambiar estado:
+              <select class="form-select" id="statusSelect" [(ngModel)]="report.status"
+                (change)="updateReportStatus(report.id, report.status)">
                 <option *ngFor="let status of reportStatuses" [value]="status">{{ status }}</option>
               </select>
               <!--  
@@ -22,20 +23,20 @@
             </div>
           </div>
         </div>
-        
+
         <div class="col-md-4 ">
           <div class="card-body">
 
-          <h5 class="card-title">Reporte número: {{report.id}}</h5>
-          <p class="card-text"> <b>Denunciante: </b> {{report.user}}</p>
-          <p class="card-text"> <b>Id post denunciado: </b> {{report.post}}</p>
-          <p class="card-text"> <b>Motivo: </b> {{report.reason}}</p>
+            <h5 class="card-title">Reporte número: {{report.id}}</h5>
+            <p class="card-text"> <b>Denunciante: </b> {{report.user}}</p>
+            <p class="card-text"> <b>Id post denunciado: </b> {{report.post}}</p>
+            <p class="card-text"> <b>Motivo: </b> {{report.reason}}</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <p class="card-text"> <b>Mensaje: </b>{{report.message}}</p>
-          
+        <div class="col-md-8">
+          <div class="card-body">
+            <p class="card-text"> <b>Mensaje: </b>{{report.message}}</p>
+
           </div>
         </div>
       </div>
@@ -43,8 +44,5 @@
         <!-- {{comment.dateformated}} -->
       </div>
     </div>
-    </div>
-    </div>
-    
-    
-     
+  </div>
+</div>

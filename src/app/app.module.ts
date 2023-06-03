@@ -17,6 +17,7 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { SpinnerInterceptor } from './shared/spinner/spinner.interceptor';
 import { ContactComponent } from './contact/contact.component';
 import { ContactModule } from './contact/contact.module';
+import { FriendsModule } from './friends/friends.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ContactModule } from './contact/contact.module';
     ProfileModule,
     AdminModule,
     BrowserAnimationsModule,
-    ContactModule
+    ContactModule,
+    FriendsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

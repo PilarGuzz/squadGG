@@ -4,7 +4,8 @@
     <img
     *ngIf="game.img" 
      src="{{game.img}}"
-    [routerLink]="['/game/'+game.gamename+'/posts']"alt="Imagen del juego {{game.gamename}}">
+     data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver posts de {{game.gamename}}"
+     [routerLink]="isAdmin ? ['/admin/game/' + game.gamename + '/posts'] : ['/game/' + game.gamename + '/posts']">
     </ng-container>
 
 </section>

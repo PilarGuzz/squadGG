@@ -7,6 +7,7 @@ import { Post } from '../_interfaces/post.interface';
 import { formatDate } from '@angular/common';
 import { Content } from '../_interfaces/postDTO';
 import { AuthService } from '../_services/auth.service';
+const swalert = require('sweetalert2')
 
 
 @Component({
@@ -23,6 +24,7 @@ export class CommentsComponent implements OnInit {
   page: number = 1;
   gamename: string = '';
   maxPage!: number;
+  isAdmin: boolean = false;
 
   //FILTROS
   nivel: string | undefined;
@@ -30,12 +32,17 @@ export class CommentsComponent implements OnInit {
   region: string | undefined;
   texto: string | undefined;
 
-  constructor(private gameService: GamesService, private route: ActivatedRoute, private commentservice: CommentService, public authServ: AuthService, private router: Router) { }
+  constructor(private gameService: GamesService, private route: ActivatedRoute, 
+    private commentservice: CommentService, public authServ: AuthService, 
+    private router: Router) { }
 
   ngOnInit(): void {
 
+    if(localStorage.getItem('role') == "ADMIN_ROLE"){
+      this.isAdmin = true;
+    }
 
-    this.route?.parent?.params.subscribe(
+    this.route.parent?.params.subscribe(
       (params) => {
         this.gamename = params['name'];
 
@@ -133,7 +140,19 @@ export class CommentsComponent implements OnInit {
   onButtonClick() {
 
     if (!localStorage.getItem('jwt')) {
-      this.router.navigate(['auth/login']);
+      swalert.fire({
+        title: 'Necesitas estar logueado para crear un post',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Login',
+        denyButtonText: `Registro`,
+      }).then((result: any) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['auth/login']);
+        } else if (result.isDenied) {
+          this.router.navigate(['auth/registrer']);
+        }
+      })
     } else {
       this.router.navigate(['/game/' + this.gamename + '/posts/add'])
     }

@@ -1,4 +1,10 @@
-<div class="cabecera position-relative" *ngIf="ready">
+<div *ngIf="isAdmin && ready"  class="text-center text-white">
+    <h1>Posts en {{game.gamename}}</h1>
+    <hr class="bg-light" style="height: 5px;">
+</div>
+
+
+<div *ngIf="!isAdmin && ready"  class="cabecera position-relative" >
     <img class="juego " src="{{game.img}}" alt="imagen del juego">
 
     <div class="position-absolute top-50 end-0 translate-middle-y">
@@ -12,7 +18,7 @@
 </div>
 
 <div class="d-flex">
-    <div class="col-4">
+    <div class="col-3">
         <app-side-bar (filtersChanged)="handleFiltersChanged($event)"></app-side-bar>
     </div>
 
