@@ -5,31 +5,39 @@
 </div>
     <div class="row">
       <div class="col-lg-6 mb-4">
-        <div class="card h-100">
+        <a [routerLink]="['/admin/users']">
+        <div class="card user-card h-100">
           <div class="card-body">
             <h5 class="card-title">Usuarios</h5>
             <p class="card-text">Administra los usuarios de tu aplicación.</p>
-            <a href="#" class="btn btn-primary">Ver más</a>
+            <a href="#" class="btn btn-primary" [routerLink]="['/admin/users']">Ver más</a>
           </div>
         </div>
+      </a>
       </div>
       <div class="col-lg-6 mb-4">
-        <div class="card h-100">
+        <a [routerLink]="['/admin/game']">
+        <div class="card game-card h-100">
           <div class="card-body">
             <h5 class="card-title">Juegos</h5>
             <p class="card-text">Administra los juegos disponibles.</p>
-            <a href="#" class="btn btn-primary">Ver más</a>
+            <a href="#" [routerLink]="['/admin/game']" class="btn btn-primary m-2">Ver</a>
+            <a href="#" [routerLink]="['/admin/game/edit']" class="btn btn-primary">Administrar</a>
+            <a href="#" [routerLink]="['/admin/game/add']" class="btn btn-primary m-2">Añadir</a>
           </div>
         </div>
+      </a>
       </div>
       <div class="col-lg-12 mb-4">
-        <div class="card h-100">
+        <a [routerLink]="['/admin/reports']">
+        <div class="card report-card h-100">
           <div class="card-body">
-            <h5 class="card-title">Informes</h5>
-            <p class="card-text">Consulta los informes generados por la aplicación.</p>
-            <a href="#" class="btn btn-primary">Ver más</a>
+            <h5 class="card-title">Reportes</h5>
+            <p class="card-text">Consulta el estado de los reports.</p>
+            <a href="#" [routerLink]="['/admin/reports']" class="btn btn-primary">Ver más</a>
           </div>
         </div>
+      </a>
       </div>
     </div>
   </div>

@@ -85,9 +85,12 @@ body{margin-top:20px;}
     width: 100%;
     padding: 10px 1rem;
     cursor: pointer;
-    border-bottom: 1px solid #f0f4f8;
+    border-top: 1px solid #f0f4f8;
 }
 
+.peticion{
+    background-color: #e6ddfed6;
+}
 .users .person:hover {
     background-color: #ffffff;
     /* Fallback Color */
@@ -177,6 +180,17 @@ body{margin-top:20px;}
     font-size: .7rem;
     text-align: right;
     color: #8796af;
+}
+
+.users .person p.name-time .new {
+    font-weight: 400;
+    font-size: .7rem;
+    text-align: right;
+    color: #000000;
+}
+.new{
+    margin-left: 5px;
+    
 }
 
 @media (max-width: 767px) {

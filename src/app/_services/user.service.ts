@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User, UserApi, UserToAdminApi } from '../_interfaces/user.interface';
+import { User, UserApi, UserToAdminApi, Userdto } from '../_interfaces/user.interface';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
 
@@ -31,6 +31,11 @@ export class UserService {
   getUser(username:string |null):Observable<User>{
     
     return this.http.get<User>(this.URL+'/'+username)
+  }
+
+  getUserDto(username:string |null):Observable<any>{
+    
+    return this.http.get<any>(this.URL+'/'+username+"/dto")
   }
 
   updateUser(username: string, form: FormGroup): Observable<any> {

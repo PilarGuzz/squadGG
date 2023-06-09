@@ -8,6 +8,36 @@ export interface User {
 
 }
 
+export interface Userdto {
+    img:      string;
+    username: string;
+    email:    string;
+    birth:    number[];
+    role:     string;
+    enabled:  boolean;
+}
+
+export interface UserChat {
+    img:      string;
+    messages: Message[];
+    online:    boolean;
+    username:    string;
+    role:     string;
+    enabled:  boolean;
+}
+export interface Message {
+    date:      string;
+    id: number;
+    message:    string;
+    username_receiver:    string;
+    username_sender:     string;
+}
+
+export interface SocketMessage {
+    action: string;
+    payload?: any;
+  }
+
 
 export interface Post {
     title: string;

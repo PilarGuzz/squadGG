@@ -1,10 +1,10 @@
 export interface FriendshipDto {
     status:  string;
     message: string;
-    data:    Datum[];
+    data:    FRequest[];
 }
 
-export interface Datum {
+export interface FRequest {
     user:   string;
     friend: string;
     status: string;
