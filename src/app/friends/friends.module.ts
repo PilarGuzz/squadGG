@@ -4,6 +4,7 @@ import { FriendsComponent } from './friends.component';
 import { ChatComponent } from './chat/chat.component';
 import { RouterModule } from '@angular/router';
 import { FriendsRoutingModule } from './friends-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { FriendsRoutingModule } from './friends-routing.module';
   imports: [
     CommonModule,
     RouterModule,
-    FriendsRoutingModule
+    FriendsRoutingModule,
+    FormsModule
   ]
 })
 export class FriendsModule { }

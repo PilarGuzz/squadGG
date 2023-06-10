@@ -1,69 +1,28 @@
-
+<div >
     <div class="selected-user">
-        <span>To: <span class="name">Emily Russell</span></span>
+        <span>To: <span class="name">{{friend}}</span></span>
     </div>
     <div class="chat-container">
         <ul class="chat-box chatContainerScroll">
-            <li class="chat-left">
-                <div class="chat-avatar">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                    <div class="chat-name">Russell</div>
-                </div>
-                <div class="chat-text">Hello, I'm Russell.
-                    <br>How can I help you today?
-                </div>
-                <div class="chat-hour">08:55 <span class="fa fa-check-circle"></span></div>
-            </li>
-            <li class="chat-right">
-                <div class="chat-hour">08:56 <span class="fa fa-check-circle"></span></div>
-                <div class="chat-text">Hi, Russell
-                    <br> I need more information about Developer Plan.
+
+
+            <li *ngFor="let message of messages"  [ngClass]="getMessageClass(message.username_sender)">
+
+                <div class="chat-hour" *ngIf="message.username_sender != friend">08:56 <span class="fa fa-check-circle"></span></div>
+                <div class="chat-text" *ngIf="message.username_sender != friend">{{message.message}}
                 </div>
                 <div class="chat-avatar">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                    <div class="chat-name">Sam</div>
+                    <img [src]="(message.username_sender === friend) ? userDtoFriend.img : userDtoMain.img"alt="Retail Admin">
+                    <div class="chat-name">{{(message.username_sender === friend) ? friend : userDtoMain.username }}</div>
                 </div>
+                <div class="chat-text" *ngIf="message.username_sender == friend">{{message.message}}
+                </div>
+                <div class="chat-hour" *ngIf="message.username_sender == friend">08:55 <span class="fa fa-check-circle"></span></div>
             </li>
-            <li class="chat-left">
-                <div class="chat-avatar">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                    <div class="chat-name">Russell</div>
-                </div>
-                <div class="chat-text">Are we meeting today?
-                    <br>Project has been already finished and I have results to show you.
-                </div>
-                <div class="chat-hour">08:57 <span class="fa fa-check-circle"></span></div>
-            </li>
-            <li class="chat-right">
-                <div class="chat-hour">08:59 <span class="fa fa-check-circle"></span></div>
-                <div class="chat-text">Well I am not sure.
-                    <br>I have results to show you.
-                </div>
-                <div class="chat-avatar">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar5.png" alt="Retail Admin">
-                    <div class="chat-name">Joyse</div>
-                </div>
-            </li>
-            <li class="chat-left">
-                <div class="chat-avatar">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                    <div class="chat-name">Russell</div>
-                </div>
-                <div class="chat-text">The rest of the team is not here yet.
-                    <br>Maybe in an hour or so?
-                </div>
-                <div class="chat-hour">08:57 <span class="fa fa-check-circle"></span></div>
-            </li>
-            <li class="chat-right">
-                <div class="chat-hour">08:59 <span class="fa fa-check-circle"></span></div>
-                <div class="chat-text">Have you faced any problems at the last phase of the
-                    project?</div>
-                <div class="chat-avatar">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar4.png" alt="Retail Admin">
-                    <div class="chat-name">Jin</div>
-                </div>
-            </li>
-            <li class="chat-left">
+
+
+            
+            <!-- <li class="chat-left">
                 <div class="chat-avatar">
                     <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
                     <div class="chat-name">Russell</div>
@@ -72,9 +31,11 @@
                     <br>I'm very excited to show this to our team.
                 </div>
                 <div class="chat-hour">07:00 <span class="fa fa-check-circle"></span></div>
-            </li>
+            </li> -->
         </ul>
         <div class="form-group mt-3 mb-0">
-            <textarea class="form-control" rows="3" placeholder="Type your message here..."></textarea>
+            <textarea  [(ngModel)]="text" class="form-control" rows="3" placeholder="Type your message here..." ></textarea>
+        <button (click)="sendMessage(text)" class="button">Enviar</button>
         </div>
     </div>
+</div>
