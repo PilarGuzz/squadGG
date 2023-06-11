@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FRequest, FriendshipDto } from 'src/app/_interfaces/friendshipDto.interface';
 import { Message, SocketMessage, UserChat, Userdto } from 'src/app/_interfaces/user.interface';
@@ -15,6 +15,8 @@ const swalert = require('sweetalert2')
 })
 export class ChatComponent implements OnInit {
   @Input() activeFriend$?: Observable<Userdto | null>;
+  @ViewChild('chatContainer') chatContainer!: ElementRef;
+
 
   friend: string | undefined = undefined;
   username!: string | null;
@@ -53,7 +55,10 @@ export class ChatComponent implements OnInit {
   private receiveNewMessage(message: Message): void {
     this.messages.push(message);
   }
-
+  ngAfterViewChecked() {
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 1000 );  }
 
   ngOnDestroy(): void {
     this.chatSrv.disconnect();
@@ -87,6 +92,8 @@ export class ChatComponent implements OnInit {
             username_receiver: receiver
           };
           this.receiveNewMessage(newMessage);
+          console.log(this.messages);
+          
 
           
           // ToDo: pintar mensaje en el chat correspondiente y añadirlo
@@ -116,6 +123,7 @@ export class ChatComponent implements OnInit {
 
   getMessagesOneFriend() {
     const friend = this.friendsChat.find((friend: { username: string; }) => friend.username === this.friend);
+    console.log("friendsChat: " + this.friendsChat);
     
     console.log("amigo dentro del getmees " + friend);
     
@@ -151,10 +159,11 @@ export class ChatComponent implements OnInit {
     };
 
     this.chatSrv.sendMessage(messageObject);
+    this.receiveNewMessage({date : new Date(), message, username_receiver: this.friend!, username_sender : this.username!});
     
-    //this.getMessagesOneFriend();
     
     this.text = '';
+    this.scrollToBottom();
 
   
 
@@ -186,7 +195,12 @@ export class ChatComponent implements OnInit {
   getMessageClass(sender: string): string {
     return sender === this.username ? 'chat-right' : 'chat-left';
   }
-
+  scrollToBottom() {
+    setTimeout(() => {
+      const container = this.chatContainer.nativeElement;
+      container.scrollTop = container.scrollHeight;
+    }, 0);
+  }
 
 
 }

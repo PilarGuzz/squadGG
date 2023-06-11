@@ -235,6 +235,12 @@ body{margin-top:20px;}
 .chat-container {
     position: relative;
     padding: 1rem;
+    
+}
+
+.chatContainerScroll{
+    height: 65vh; /* Ajusta la altura fija según tus necesidades */
+    overflow-y: auto;
 }
 
 .chat-container li.chat-left,

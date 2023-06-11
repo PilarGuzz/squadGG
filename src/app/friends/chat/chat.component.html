@@ -3,7 +3,7 @@
         <span>To: <span class="name">{{friend}}</span></span>
     </div>
     <div class="chat-container">
-        <ul class="chat-box chatContainerScroll">
+        <ul #chatContainer class="chat-box chatContainerScroll">
 
 
             <li *ngFor="let message of messages"  [ngClass]="getMessageClass(message.username_sender)">
@@ -34,8 +34,7 @@
             </li> -->
         </ul>
         <div class="form-group mt-3 mb-0">
-            <textarea  [(ngModel)]="text" class="form-control" rows="3" placeholder="Type your message here..." ></textarea>
-        <button (click)="sendMessage(text)" class="button">Enviar</button>
+            <textarea  [(ngModel)]="text" class="form-control" rows="3" placeholder="Type your message here..." (keydown.enter)="sendMessage(text)"></textarea>
         </div>
     </div>
 </div>

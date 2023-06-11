@@ -5,6 +5,7 @@ import { TokenGuard } from './_guards/token.guard';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { ContactComponent } from './contact/contact.component';
+import { FriendsComponent } from './friends/friends.component';
 
 const routes: Routes = [
 
@@ -28,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'friends',
-    loadChildren: () => import('./friends/friends.module').then(m => m.FriendsModule),
+    component: FriendsComponent,
     canActivate: [TokenGuard]
   },
   {
