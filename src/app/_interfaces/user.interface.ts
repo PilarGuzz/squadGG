@@ -26,10 +26,16 @@ export interface UserChat {
     enabled:  boolean;
 }
 export interface Message {
-    date:      string;
-    id: number;
+    date:      Date;
     message:    string;
     username_receiver:    string;
+    username_sender:     string;
+}
+
+export interface MessageDto {
+  
+    message:    string;
+   
     username_sender:     string;
 }
 
