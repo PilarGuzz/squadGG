@@ -12,7 +12,6 @@ const routes: Routes = [
       {
         path: ':name/posts',
         loadChildren: () => import('../comments/comments.module').then(m => m.CommentsModule),
-        pathMatch: 'full'
       }
 
   ]}
