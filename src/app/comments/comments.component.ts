@@ -3,7 +3,6 @@ import { GamesService } from '../_services/games.service';
 import { Game } from '../_interfaces/game.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from '../_services/comment.service';
-import { Post } from '../_interfaces/post.interface';
 import { formatDate } from '@angular/common';
 import { Content } from '../_interfaces/postDTO';
 import { AuthService } from '../_services/auth.service';
@@ -31,6 +30,7 @@ export class CommentsComponent implements OnInit {
   nivelCompetitivo: string | undefined;
   region: string | undefined;
   texto: string | undefined;
+  username: string | undefined;
 
   constructor(private gameService: GamesService, private route: ActivatedRoute, 
     private commentservice: CommentService, public authServ: AuthService, 
@@ -63,16 +63,19 @@ export class CommentsComponent implements OnInit {
 
   cargarDatos() {
     //Almacenamos los filtros
+   
     const filters = {
       nivel: this.nivel,
       nivelCompetitivo: this.nivelCompetitivo,
       region: this.region,
+      username: this.username,
       texto: this.texto
     };
 
     this.commentservice.getPosts(this.game.gamename, this.page, this.size, filters.nivel,
       filters.nivelCompetitivo,
       filters.region,
+      filters.username,
       filters.texto )
       .subscribe({
         next: (resp) => {
@@ -99,9 +102,11 @@ export class CommentsComponent implements OnInit {
   }
 
   handleFiltersChanged(filters: any) {
+    
     this.nivel = filters.nivel;
     this.nivelCompetitivo = filters.nivelCompetitivo;
     this.region = filters.region;
+    this.username = filters.username;
     this.texto = filters.texto;
   
     this.cargarDatos();

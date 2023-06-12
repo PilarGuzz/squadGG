@@ -13,6 +13,8 @@ export class SideBarComponent implements OnInit {
    nivelCompetitivo: string | null = null;
    region: string | null = null;
    texto: string | null = null;
+   username: string | null = null;
+
 
   constructor() { }
 
@@ -25,6 +27,7 @@ export class SideBarComponent implements OnInit {
       nivel: this.nivel,
       nivelCompetitivo: this.nivelCompetitivo,
       region: this.region,
+      username: this.username,
       texto: this.texto
     };
   

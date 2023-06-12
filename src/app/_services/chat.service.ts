@@ -16,13 +16,16 @@ export class ChatService {
   public disconnect(): void {
     if (this.subject) {
       this.subject.complete();
+      this.subject = undefined;
     }
   }
 
   public connect(url: string): Subject<SocketMessage> {
+    
     if (!this.subject) {
       this.subject = this.create(url);
       console.log("Successfully connected: " + url);
+
     }
     return this.subject;
   }

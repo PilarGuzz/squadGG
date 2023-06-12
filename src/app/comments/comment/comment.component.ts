@@ -4,8 +4,10 @@ import { Content } from 'src/app/_interfaces/postDTO';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CommentService } from '../../_services/comment.service';
 import { ReportService } from 'src/app/_services/report.service';
-import { ReportDTO } from 'src/app/_interfaces/reportDTO';
 import { FriendshipService } from 'src/app/_services/friendship.service';
+import { FRequest } from 'src/app/_interfaces/friendshipDto.interface';
+import { Userdto } from 'src/app/_interfaces/user.interface';
+import { UserService } from 'src/app/_services/user.service';
 
 const swalert = require('sweetalert2')
 
@@ -24,13 +26,18 @@ export class CommentComponent implements OnInit {
   id: number = 0;
   post!: Content;
 
+  friends: FRequest[] = [];
+  userFriends: Userdto[] = [];
+  currentUser!: String | null;
+
 
   constructor(private route: ActivatedRoute, private commServ: CommentService,
     private authServ: AuthService, private router: Router, private reportServ: ReportService,
-    private friendshipSrv: FriendshipService) { }
+    private friendshipSrv: FriendshipService, private userSrv: UserService) { }
 
   ngOnInit(): void {
-
+    this.currentUser = localStorage.getItem('user');
+    this.getAllFriendship();
 
   }
 
@@ -159,7 +166,7 @@ export class CommentComponent implements OnInit {
 
     } else {
       this.gamename = this.postsList[0].gamename.gamename;
-      this.commServ.post(id, this.gamename)
+      this.commServ.post(id)
         .subscribe({
           next: (resp) => {
             this.post = resp;
@@ -181,32 +188,35 @@ export class CommentComponent implements OnInit {
         })
     }
   }
-
+  isFriend(username: string): boolean {
+    return this.userFriends.some(user => user.username === username);
+  }
   addFriend(friend: string) {
     if (!this.authServ.isAuthenticated()) {
       this.needLogin('Necesitas estar logueado para agregar amigos');
-      
+
     } else {
       swalert.fire({
-        title: '¿Quieres enviar una petición de amistad a '+ friend + ' ?',
+        title: '¿Quieres enviar una petición de amistad a ' + friend + ' ?',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: 'Sí',
         denyButtonText: `No`,
       }).then((result: { isConfirmed: any; isDenied: any; }) => {
-        
+
         if (result.isConfirmed) {
           this.friendshipSrv.createRequest(friend)
-      .subscribe({
-        next: (resp) => {
-          this.post = resp;
-          swalert.fire('Petición enviada', '', 'success')
-        },
-        error: (error) => {
-          swalert.fire('No se ha podido enviar', '', 'info')
-        }
+            .subscribe({
+              next: (resp) => {
+                this.post = resp;
+                swalert.fire('Petición enviada', '', 'success')
+                this.getAllFriendship();
+              },
+              error: (error) => {
+                swalert.fire('No se ha podido enviar', '', 'info')
+              }
 
-      })
+            })
         } else if (result.isDenied) {
           swalert.fire('Petición no enviada', '', 'info')
         }
@@ -214,9 +224,37 @@ export class CommentComponent implements OnInit {
       });
 
 
-      
+
 
     }
+  }
+
+  getAllFriendship() {
+    const user = localStorage.getItem('user');
+    if (user != null)
+      this.friendshipSrv.getFriendshipByUser(user).subscribe({
+        next: (resp) => {
+          this.friends = resp.data;
+          this.userFriends = [];
+
+          for (let fr of this.friends) {
+            if (fr.friend == user) {
+              this.userSrv.getUserDto(fr.user)
+                .subscribe((userData: Userdto) => {
+                  this.userFriends.push(userData);
+                })
+
+            } else {
+              this.userSrv.getUserDto(fr.friend)
+                .subscribe((userData: Userdto) => {
+                  this.userFriends.push(userData);
+                })
+            }
+          }
+
+        }
+      })
+
   }
 
   needLogin(message: string) {

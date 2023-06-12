@@ -19,6 +19,11 @@ export class FriendshipService {
 
   }
 
+  getFriendshipByUser(user:string): Observable<any> {
+    return this.http.get(this.URL+"/"+ user + "/all");
+
+  }
+
   getFriendsRquestsByUser(user:string): Observable<any> {
     return this.http.get(this.URL+"/"+ user + "/requests");
 

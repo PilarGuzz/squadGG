@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FRequest, FriendshipDto } from 'src/app/_interfaces/friendshipDto.interface';
 import { Message, SocketMessage, UserChat, Userdto } from 'src/app/_interfaces/user.interface';
 import { ChatService } from 'src/app/_services/chat.service';
@@ -17,6 +17,8 @@ export class ChatComponent implements OnInit {
   @Input() activeFriend$?: Observable<Userdto | null>;
   @ViewChild('chatContainer') chatContainer!: ElementRef;
 
+  autoScroll: boolean = true;
+
 
   friend: string | undefined = undefined;
   username!: string | null;
@@ -27,10 +29,12 @@ export class ChatComponent implements OnInit {
 
   messages: Message[] = [];
   text: string = '';
-
+  subscription?: Subscription;
   constructor(private friendServ: FriendshipService, private userSrv: UserService, private chatSrv: ChatService) { }
 
   ngOnInit(): void {
+    console.log("ngoninit");
+    
     this.activeFriend$?.subscribe(activeFriend => {
       if (activeFriend != null)
         this.friend = activeFriend.username;
@@ -44,24 +48,36 @@ export class ChatComponent implements OnInit {
     const chatUrl = "ws://localhost:8080?jwt=" + localStorage.getItem('jwt');
     this.chatSrv.connect(chatUrl);
     //Recupera toda la info de los chats
-    this.chatSrv.getSubject()?.subscribe((msg: any) => {
-      
+    this.subscription = this.chatSrv.getSubject()?.subscribe((msg: any) => {
+      console.log("ngoninit2");
+
       this.onMessage(JSON.parse(msg.data));
-      
+      //prueba
+     // this.getMessagesOneFriend();
+
     });
   }
 
 
   private receiveNewMessage(message: Message): void {
     this.messages.push(message);
+    this.scrollToBottom();
+
   }
   ngAfterViewChecked() {
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 1000 );  }
+    //prueba
+    this.scrollToBottom();
+
+    // setTimeout(() => {
+    //   this.scrollToBottom();
+    // }, 1000 );  
+  }
 
   ngOnDestroy(): void {
+    console.log("desconexion");
     this.chatSrv.disconnect();
+    this.subscription?.unsubscribe();
+
   }
 
   //funciones del chat
@@ -81,13 +97,13 @@ export class ChatComponent implements OnInit {
           break;
         case 'SEND_MESSAGE':
           const sender = payload.username;
-          const message = payload.message;
+          const receivedMessage  = payload.message;
           const receiver = payload.receiver;
 
           //prueba
           const newMessage: Message = {
             username_sender: sender,
-            message: message,
+            message: receivedMessage ,
             date: new Date(),
             username_receiver: receiver
           };
@@ -132,6 +148,7 @@ export class ChatComponent implements OnInit {
       this.messages = friend.messages; // Obtener los mensajes del amigo encontrado
       console.log("mensajes: " + this.messages);
     } else {
+      this.messages= []
       console.log('Amigo no encontrado');
     }
 
@@ -163,7 +180,7 @@ export class ChatComponent implements OnInit {
     
     
     this.text = '';
-    this.scrollToBottom();
+    this.scrollToBottomAfterDelay();
 
   
 
@@ -171,20 +188,19 @@ export class ChatComponent implements OnInit {
     // buscar los mensajes con el amigos y hacer un push en el array
   }
 
-
   //Recupero todos los amigos desde Java
-  getFriends() {
-    if (this.username != null) {
-      this.friendServ.getFriendsByUser(this.username)
-        .subscribe({
-          next: (resp) => {
-            this.friends = resp.data;
-          }
-        })
-    }
+  // getFriends() {
+  //   if (this.username != null) {
+  //     this.friendServ.getFriendsByUser(this.username)
+  //       .subscribe({
+  //         next: (resp) => {
+  //           this.friends = resp.data;
+  //         }
+  //       })
+  //   }
 
 
-  }
+  // }
 
   //Obtengo el DTO de un usuario
   getUserDto(username: string): Observable<Userdto | undefined> {
@@ -195,12 +211,18 @@ export class ChatComponent implements OnInit {
   getMessageClass(sender: string): string {
     return sender === this.username ? 'chat-right' : 'chat-left';
   }
+
+
   scrollToBottom() {
-    setTimeout(() => {
-      const container = this.chatContainer.nativeElement;
-      container.scrollTop = container.scrollHeight;
-    }, 0);
+    const container = this.chatContainer.nativeElement;
+    container.scrollTop = container.scrollHeight;
+ 
   }
 
+private scrollToBottomAfterDelay() {
+  setTimeout(() => {
+    this.scrollToBottom();
+  }, 100);
+}
 
 }

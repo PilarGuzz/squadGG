@@ -5,34 +5,41 @@
             Filtros
         </h3>
         <hr class="text-white" />
-    
+        <div class="list-group list-reset">
+            <div class="text-white">Usuario</div>
+            <input class="list-group-item list-group-item-action" 
+            [(ngModel)]="username" (keydown.enter)="updateFilters()" placeholder="Nombre de usuario"/>
+          
+        </div>
+        <br>
         <div class="list-group list-reset">
             <div class="text-white">Nivel</div>
             <input class="list-group-item list-group-item-action"
-            [(ngModel)]="nivel" (ngModelChange)="updateFilters()" placeholder="60"/>
+            [(ngModel)]="nivel" (keydown.enter)="updateFilters()" placeholder="60"/>
            
         </div>
         <br>
         <div class="list-group list-reset">
             <div class="text-white">Nivel Competitivo</div>
             <input class="list-group-item list-group-item-action" 
-            [(ngModel)]="nivelCompetitivo" (ngModelChange)="updateFilters()" placeholder="Gold" />
+            [(ngModel)]="nivelCompetitivo" (keydown.enter)="updateFilters()" placeholder="Gold" />
            
         </div>
         <br>
         <div class="list-group list-reset">
             <div class="text-white">Región </div>
             <input class="list-group-item list-group-item-action" 
-            [(ngModel)]="region" (ngModelChange)="updateFilters()" placeholder="EUW"/>
+            [(ngModel)]="region" (keydown.enter)="updateFilters()" placeholder="EUW"/>
             
                 
             
         </div>
         <br>
-        <div class="list-group list-reset">
+       
+        <!-- <div class="list-group list-reset">
             <div class="text-white">Texto</div>
             <input class="list-group-item list-group-item-action" 
             [(ngModel)]="texto" (ngModelChange)="updateFilters()" placeholder="palabras clave"/>
           
-        </div>
+        </div> -->
     </div>

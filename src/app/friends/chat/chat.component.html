@@ -11,7 +11,7 @@
                 <div class="chat-hour" *ngIf="message.username_sender != friend">08:56 <span class="fa fa-check-circle"></span></div>
                 <div class="chat-text" *ngIf="message.username_sender != friend">{{message.message}}
                 </div>
-                <div class="chat-avatar">
+                <div class="chat-avatar" *ngIf="(userDtoFriend && userDtoFriend.img) || (userDtoMain && userDtoMain.img)">
                     <img [src]="(message.username_sender === friend) ? userDtoFriend.img : userDtoMain.img"alt="Retail Admin">
                     <div class="chat-name">{{(message.username_sender === friend) ? friend : userDtoMain.username }}</div>
                 </div>

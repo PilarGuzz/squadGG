@@ -18,7 +18,7 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   getPosts(gamename: string,  pageNumber: number, sizeNumber: number, nivel?: string, 
-          nivelCompetitivo?: string, region?: string, texto?: string): Observable<any> {
+          nivelCompetitivo?: string, region?: string, username?: string, texto?: string): Observable<any> {
 
     let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
@@ -34,6 +34,10 @@ export class CommentService {
 
     if (region) {
       params = params.set('region', region);
+    }
+
+    if (username) {
+      params = params.set('username', username);
     }
 
     if (texto) {
@@ -59,9 +63,9 @@ export class CommentService {
 
   }
 
-  post(id: number, game: string): Observable<any> {
+  post(id: number): Observable<any> {
 
-    return this.http.get<Content>(`${this.URL}/${game}/${id}`)
+    return this.http.get<Content>(`${this.URL}/one/${id}`)
   }
 
 }

@@ -21,10 +21,33 @@
 
       <img src="{{comment.img}}" class="img-fluid rounded-start" alt="...">-->
       <h5 class="card-title">
-        <button class="btn btn-outline-primary " (click)="addFriend(comment.username)">
-          <i class="fa-solid fa-user-plus"></i>
-          {{comment.username}}
-        </button>
+
+        <ng-container *ngIf="isFriend(comment.username); else addFriendButton">
+          <ng-container *ngIf="comment.username === currentUser; else showUsername">
+            <i class="fa-regular fa-user"></i>
+            {{ comment.username }}
+          </ng-container>
+          <ng-template #showUsername>
+            <div>
+              <i class="fa-solid fa-user-group"></i>
+              {{ comment.username }}
+            </div>
+          </ng-template>
+        </ng-container>
+        
+        <ng-template #addFriendButton>
+          <ng-container *ngIf="comment.username !== currentUser; else showUsername">
+            <button class="btn btn-outline-primary" (click)="addFriend(comment.username)">
+              <i class="fa-solid fa-user-plus"></i>
+              {{ comment.username }}
+            </button>
+          </ng-container>
+          <ng-template #showUsername>
+            <i class="fa-regular fa-user"></i>
+            {{ comment.username }}
+          </ng-template>
+        </ng-template>
+
       </h5>
       <!-- <p class="card-text"> <b>Nombre de usuario en el juego: </b> {{comment.nickgame}}</p> -->
       <p class="card-text"> <b>Región: </b>{{comment.region}}</p>
