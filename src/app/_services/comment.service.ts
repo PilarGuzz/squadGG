@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CommentService {
-  //URL : string = environment.apiUrl + '/posts'
-  URL: string = 'http://localhost:8081/posts'
+  URL : string = environment.apiUrl + '/posts'
+  //URL: string = 'http://localhost:8081/posts'
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }

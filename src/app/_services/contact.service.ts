@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
 
-  URL: string = 'http://localhost:8081/contact'
-  //URL: string = environment.apiUrl + '/contact'
+  //URL: string = 'http://localhost:8081/contact'
+  URL: string = environment.apiUrl + '/contact'
 
   constructor(private http: HttpClient) { }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -9,8 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class FriendshipService {
 
-  URL: string = 'http://localhost:8081/friends'
-  //URL: string = environment.apiUrl + '/friends'
+  //URL: string = 'http://localhost:8081/friends'
+  URL: string = environment.apiUrl + '/friends'
 
   constructor(private http: HttpClient) { }
 
