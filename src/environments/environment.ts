@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://apisquadgg-production.up.railway.app'
+  apiUrl: 'http://107.152.38.59:8081'
 
 };
 
