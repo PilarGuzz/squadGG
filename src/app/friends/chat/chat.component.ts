@@ -45,7 +45,7 @@ export class ChatComponent implements OnInit {
 
     this.username = localStorage.getItem('user');
 
-    const chatUrl = "ws://107.152.38.59:8080?jwt=" + localStorage.getItem('jwt');
+    const chatUrl = "wss://107.152.38.59:8080?jwt=" + localStorage.getItem('jwt');
     this.chatSrv.connect(chatUrl);
     //Recupera toda la info de los chats
     this.subscription = this.chatSrv.getSubject()?.subscribe((msg: any) => {
