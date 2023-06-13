@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer, Subject } from 'rxjs';
 import { SocketMessage } from '../_interfaces/user.interface';
 
-const CHAT_URL = "wss://107.152.38.59:8080";
+const CHAT_URL = "wss://chat.squadgg.com";
 
 @Injectable({
   providedIn: 'root'
