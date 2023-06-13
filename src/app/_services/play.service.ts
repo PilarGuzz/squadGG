@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class PlayService {
 
   //URL: string = 'http://localhost:8081/play'
-  URL: string = environment.apiUrl + '/games'
+  URL: string = environment.apiUrl + '/play'
 
   constructor(private http: HttpClient) { }
 
