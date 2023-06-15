@@ -50,6 +50,8 @@ export class DatatableUsersComponent implements OnInit {
     this.pageSize = datos.size;
     this.paginator.pageIndex = datos.number;
       this.dataSource.sort = this.sort;
+      console.log(datos.content);
+      
     });
   };
 
