@@ -94,7 +94,6 @@ export class RegistrerComponent implements OnInit {
     this.user.birth = this.myForm.value.birth;
     this.user.password = this.myForm.value.password;
  
-    //this.user = this.myForm.value;
     this.authService.registerUser(this.user)
       .subscribe({
         next:(response) => {
@@ -102,7 +101,8 @@ export class RegistrerComponent implements OnInit {
           swalert.fire({
             icon: 'success',
             title: 'Usuario creado!',
-            text: 'El usuario fue creado exitosamente!',
+            text: '¡El usuario fue creado exitosamente!'+
+                  'Por favor, revise su correo y verifique su cuenta. ',
           });
           this.router.navigate(['/auth/login'])
         },

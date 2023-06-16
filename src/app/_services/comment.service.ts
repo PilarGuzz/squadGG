@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class CommentService {
   URL : string = environment.apiUrl + '/posts'
-  //URL: string = 'http://localhost:8081/posts'
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
@@ -49,16 +48,11 @@ export class CommentService {
   }
 
 
-  // postsList(page: number, size: number, game: string): Observable<any> {
-  //   return this.http.get<PostDto>(`${this.URL}/${game}?pageNumber=${page}&sizeNumber=${size}`)
-  // }
-
   addPost(post: Content, game: string): Observable<any> {
     return this.http.post<Content>(`${this.URL}/${game}`, post, this.httpOptions);
   }
 
   deletePost(id: number, game: string): Observable<any> {
-    // @ts-ignore
     return this.http.delete<any>(`${this.URL}/${game}/${id}`)
 
   }

@@ -24,7 +24,6 @@ export class ChatService {
     
     if (!this.subject) {
       this.subject = this.create(url);
-      console.log("Successfully connected: " + url);
 
     }
     return this.subject;

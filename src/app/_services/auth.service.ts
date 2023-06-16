@@ -21,7 +21,6 @@ export class AuthService {
   private role = new BehaviorSubject<string> ('');
   private usernameNav = new BehaviorSubject<string> ('');
 
-  //private user = new BehaviorSubject<User>({username: '', email: '', password:'', birth: new Date()})
   user!: User;
 
   httpOptions = {
@@ -29,8 +28,7 @@ export class AuthService {
   }
    urllogin: string = environment.apiUrl + '/login'
    urlreg: string = environment.apiUrl + '/registrer'
-  // urllogin:string = 'http://localhost:8081/login'
-  // urlreg:string = 'http://localhost:8081/registrer'
+
   token!: DecodeToken;
 
   
@@ -52,10 +50,6 @@ export class AuthService {
     return this.role.asObservable();
   }
 
-  // get userSession(){
-  //   return this.user.asObservable();
-
-  // }
   
   login(username: string, password: string): Observable<boolean> {
     return this.http.post<Token>(this.urllogin, { 'username': username, 'password': password }, this.httpOptions)
@@ -74,7 +68,6 @@ export class AuthService {
         }
 
         return of(true);
-        //this.isAuthenticated();
 
       }), catchError(error => {
         this.loggedIn.next(false);
@@ -101,7 +94,6 @@ export class AuthService {
   }
 
   logout() {
-    //loggedIn = false;
     localStorage.setItem("loggedIn", "false");
     this.loggedIn.next(false);
     this.admin.next(false);

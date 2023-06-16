@@ -1,11 +1,3 @@
-// To parse this data:
-//
-//   import { Convert } from "./file";
-//
-//   const play = Convert.toPlay(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
 
 export interface Play {
     username: string;
@@ -24,8 +16,7 @@ export interface Username {
     accountNonLocked:      boolean;
 }
 
-// Converts JSON strings to/from your types
-// and asserts the results of JSON.parse at runtime
+
 export class Convert {
     public static toPlay(json: string): Play[] {
         return cast(JSON.parse(json), a(r("Play")));

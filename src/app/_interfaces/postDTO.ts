@@ -1,11 +1,3 @@
-// To parse this data:
-//
-//   import { Convert, PostDto } from "./file";
-//
-//   const postDto = Convert.toPostDto(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
 
 export interface PostDto {
     content:          Content[];

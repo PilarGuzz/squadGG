@@ -10,8 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class UserService {
 
-  //URL : string = 'http://localhost:8081/users'
-  //urlAdmin : string = 'http://localhost:8081/admin/users'
+
   URL : string = environment.apiUrl + '/users'
   urlAdmin : string = environment.apiUrl + '/admin/users'
 
@@ -83,7 +82,6 @@ export class UserService {
     formData.append('currentpassword', currentpassword);
     formData.append('password', password);
 
-  console.log(username);
 
     return this.http.post(this.URL + '/' + username + '/editpass', formData)
 

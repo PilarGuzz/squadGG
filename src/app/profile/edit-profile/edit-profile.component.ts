@@ -16,7 +16,6 @@ const swalert = require('sweetalert2')
 export class EditProfileComponent implements OnInit {
 
   user!: User;
-  // img?: File;
   loaded :  boolean = false;
 
   myForm: FormGroup = this.fb.group({

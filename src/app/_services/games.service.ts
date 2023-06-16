@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class GamesService {
 
-  //URL: string = 'http://localhost:8081/games'
   URL: string = environment.apiUrl + '/games'
 
 

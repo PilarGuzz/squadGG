@@ -44,11 +44,11 @@ import { FriendsModule } from './friends/friends.module';
   {
     provide: 'SocialAuthServiceConfig',
     useValue: {
-      autoLogin: true, //keeps the user signed in
+      autoLogin: true, 
       providers: [
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider('807418543433-0hjiibg74ddg11liscb6tlnu774g41v7.apps.googleusercontent.com') // your client id
+          provider: new GoogleLoginProvider('807418543433-0hjiibg74ddg11liscb6tlnu774g41v7.apps.googleusercontent.com') 
         }
       ]
     }

@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ReportService {
 
-  //URL: string = 'http://localhost:8081/reports'
   URL: string = environment.apiUrl + '/reports'
 
   constructor(private http: HttpClient) { }

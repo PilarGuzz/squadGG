@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class FriendshipService {
 
-  //URL: string = 'http://localhost:8081/friends'
   URL: string = environment.apiUrl + '/friends'
 
   constructor(private http: HttpClient) { }

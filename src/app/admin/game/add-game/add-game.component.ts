@@ -24,7 +24,6 @@ export class AddGameComponent implements OnInit {
   }
 
   save(): void{
-    //this.game = {gamename: this.gamename, img: this.img}
     this.gameService.addGame(this.gamename, this.img)
     .subscribe({
       next:(resp) => { 

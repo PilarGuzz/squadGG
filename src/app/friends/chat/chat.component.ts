@@ -33,12 +33,10 @@ export class ChatComponent implements OnInit {
   constructor(private friendServ: FriendshipService, private userSrv: UserService, private chatSrv: ChatService) { }
 
   ngOnInit(): void {
-    console.log("ngoninit");
     
     this.activeFriend$?.subscribe(activeFriend => {
       if (activeFriend != null)
         this.friend = activeFriend.username;
-      console.log(this.friend);
       this.getMessagesOneFriend()
 
     });
@@ -49,11 +47,9 @@ export class ChatComponent implements OnInit {
     this.chatSrv.connect(chatUrl);
     //Recupera toda la info de los chats
     this.subscription = this.chatSrv.getSubject()?.subscribe((msg: any) => {
-      console.log("ngoninit2");
 
       this.onMessage(JSON.parse(msg.data));
-      //prueba
-     // this.getMessagesOneFriend();
+
 
     });
   }
@@ -65,16 +61,11 @@ export class ChatComponent implements OnInit {
 
   }
   ngAfterViewChecked() {
-    //prueba
     this.scrollToBottom();
-
-    // setTimeout(() => {
-    //   this.scrollToBottom();
-    // }, 1000 );  
+ 
   }
 
   ngOnDestroy(): void {
-    console.log("desconexion");
     this.chatSrv.disconnect();
     this.subscription?.unsubscribe();
 
@@ -92,7 +83,6 @@ export class ChatComponent implements OnInit {
         case 'FRIENDS':
           this.friendsChat = payload.friends
 
-          console.log('Amigos: ' + payload.friends);
 
           break;
         case 'SEND_MESSAGE':
@@ -100,7 +90,6 @@ export class ChatComponent implements OnInit {
           const receivedMessage  = payload.message;
           const receiver = payload.receiver;
 
-          //prueba
           const newMessage: Message = {
             username_sender: sender,
             message: receivedMessage ,
@@ -108,7 +97,6 @@ export class ChatComponent implements OnInit {
             username_receiver: receiver
           };
           this.receiveNewMessage(newMessage);
-          console.log(this.messages);
           
 
           
@@ -131,22 +119,17 @@ export class ChatComponent implements OnInit {
         case 'HELLO':
           // Lógica para el mensaje HELLO
           break;
-        // 
+
       }
 
     }
   }
 
   getMessagesOneFriend() {
-    const friend = this.friendsChat.find((friend: { username: string; }) => friend.username === this.friend);
-    console.log("friendsChat: " + this.friendsChat);
-    
-    console.log("amigo dentro del getmees " + friend);
-    
+    const friend = this.friendsChat.find((friend: { username: string; }) => friend.username === this.friend);   
     
     if (friend) {
       this.messages = friend.messages; // Obtener los mensajes del amigo encontrado
-      console.log("mensajes: " + this.messages);
     } else {
       this.messages= []
       console.log('Amigo no encontrado');
@@ -165,7 +148,6 @@ export class ChatComponent implements OnInit {
         }
       });
   }
-//TODO mandar al user
   sendMessage(message: string) {
     const messageObject = {
       action: 'SEND_MESSAGE',
@@ -182,25 +164,10 @@ export class ChatComponent implements OnInit {
     this.text = '';
     this.scrollToBottomAfterDelay();
 
-  
 
-    // Todo: insertes el mensaje en donde corresponde, buscar amigo, 
-    // buscar los mensajes con el amigos y hacer un push en el array
   }
 
-  //Recupero todos los amigos desde Java
-  // getFriends() {
-  //   if (this.username != null) {
-  //     this.friendServ.getFriendsByUser(this.username)
-  //       .subscribe({
-  //         next: (resp) => {
-  //           this.friends = resp.data;
-  //         }
-  //       })
-  //   }
 
-
-  // }
 
   //Obtengo el DTO de un usuario
   getUserDto(username: string): Observable<Userdto | undefined> {

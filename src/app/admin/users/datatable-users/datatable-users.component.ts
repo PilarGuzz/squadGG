@@ -22,9 +22,9 @@ export class DatatableUsersComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   sort: MatSort = new MatSort;
 
-  displayedColumns: string[] = ['img', 'username', 'email', 'birth', 'role', 'active' ];
-  page:number = 1;
-  size:number = 10;
+  displayedColumns: string[] = ['img', 'username', 'email', 'birth', 'role', 'active'];
+  page: number = 1;
+  size: number = 10;
   totalElements: any;
   pageSize: any;
 
@@ -35,28 +35,27 @@ export class DatatableUsersComponent implements OnInit {
   }
 
   onPageChange(event: PageEvent) {
-    this.page=event.pageIndex+1;
-    this.size=event.pageSize;
+    this.page = event.pageIndex + 1;
+    this.size = event.pageSize;
     this.cargarDatos();
 
   }
-  
+
 
   cargarDatos(): void {
     this.userService.getUsersAdmin(this.size, this.page)
-    .subscribe(datos => {
-      this.dataSource = new MatTableDataSource(datos.content);
-      this.totalElements = datos.totalElements;
-    this.pageSize = datos.size;
-    this.paginator.pageIndex = datos.number;
-      this.dataSource.sort = this.sort;
-      console.log(datos.content);
-      
-    });
+      .subscribe(datos => {
+        this.dataSource = new MatTableDataSource(datos.content);
+        this.totalElements = datos.totalElements;
+        this.pageSize = datos.size;
+        this.paginator.pageIndex = datos.number;
+        this.dataSource.sort = this.sort;
+
+      });
   };
 
 
-  async updateAdmin(username : string, role: string) {
+  async updateAdmin(username: string, role: string) {
     const roleToChange = (role === "ADMIN_ROLE") ? "USER_ROLE" : "ADMIN_ROLE";
     swalert.fire({
       title: '¿Estás seguro?',
@@ -69,28 +68,29 @@ export class DatatableUsersComponent implements OnInit {
     }).then((result: { isConfirmed: any; }) => {
       if (result.isConfirmed) {
         this.userService.updateAdmin(username, roleToChange)
-        .subscribe({
-          next:(resp) =>{
-        swalert.fire(
-          'Actualizado!',
-          'El rol ha sido actualizado.',
-          'success'
-        )
-        this.cargarDatos();
-        this.router.navigate(['/admin/users'])
+          .subscribe({
+            next: (resp) => {
+              swalert.fire(
+                'Actualizado!',
+                'El rol ha sido actualizado.',
+                'success'
+              )
+              this.cargarDatos();
+              this.router.navigate(['/admin/users'])
+            }
+          })
       }
-      })
-    }}) 
+    })
   }
 
 
 
-  async updateActive(username : string, active: boolean) {
+  async updateActive(username: string, active: boolean) {
 
-    
+
     swalert.fire({
       title: '¿Estás seguro?',
-      text: "Va a cambiar el estado del usuario "+ username,
+      text: "Va a cambiar el estado del usuario " + username,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -99,19 +99,19 @@ export class DatatableUsersComponent implements OnInit {
     }).then((result: { isConfirmed: any; }) => {
       if (result.isConfirmed) {
         this.userService.updateActive(username, !active)
-        .subscribe({
-          next:(resp) =>{
-        swalert.fire(
-          'Actualizado!',
-          'El estado ha sido actualizado.',
-          'success'
-        )
-        this.cargarDatos();
-        this.router.navigate(['/admin/users'])
-          }
-      })
+          .subscribe({
+            next: (resp) => {
+              swalert.fire(
+                'Actualizado!',
+                'El estado ha sido actualizado.',
+                'success'
+              )
+              this.cargarDatos();
+              this.router.navigate(['/admin/users'])
+            }
+          })
       }
-    }) 
+    })
   }
 
 

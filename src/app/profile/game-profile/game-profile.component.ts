@@ -14,7 +14,7 @@ import { PlayService } from 'src/app/_services/play.service';
 })
 export class GameProfileComponent implements OnInit {
 /*AMPLIACION PROYECTO*/
-//@ViewChild('myForm') myForm!: NgForm;
+
   juego : string = "";
   games: Game[] = [];
   plays: Play[] = [];

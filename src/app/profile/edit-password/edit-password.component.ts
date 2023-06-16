@@ -33,11 +33,9 @@ export class EditPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //TO DO
   private isCurrentPass(control: FormControl) {
     const passwordControl = control.root.get('currentpassword');
-   // this.username = localStorage.getItem('user');
-    //console.log(this.username+ "2");
+
 
     if (!passwordControl ||this.username == null ) {
       return null;
@@ -108,7 +106,6 @@ export class EditPasswordComponent implements OnInit {
             swalert.fire('Contraseña actualizado', 'Se ha actualizado la contraseña correctamente', 'success')
             const url = '/profile/' + this.username; // Construye la URL completa
             this.router.navigateByUrl(url); // Redirecciona a la URL construida
-           // this.router.navigateByUrl('/profile/this.user.username')
           },
           error: (error) => {
             swalert.fire('Error', this.resultMessage, 'error')

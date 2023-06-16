@@ -41,12 +41,11 @@ export class ReportsComponent implements OnInit {
     this.reportSrv.changeStatus(reportId, newStatus)
       .subscribe(
         () => {
-          console.log('Estado actualizado exitosamente');
-          // Aquí puedes realizar acciones adicionales después de actualizar el estado, si es necesario
+
         },
         error => {
           console.error('Error al actualizar el estado del reporte', error);
-          // Maneja el error de acuerdo a tus necesidades
+
         }
       );
   }

@@ -24,7 +24,6 @@ export class GamesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //window.location.reload()
 
     this.role = localStorage.getItem('role');
     if(this.role == "ADMIN_ROLE"){

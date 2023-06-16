@@ -90,7 +90,6 @@ export class CommentsComponent implements OnInit {
               post.datepublication[4]
             );
 
-            //const date = new Date(year, monthIndex, day, hours, minutes)
             return {
               ...post,
               dateformated: formatDate(date, 'dd/MM/yyyy h:mm', 'en-EN'),

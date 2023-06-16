@@ -18,7 +18,6 @@ username$!: Observable<string>;
 
 user!: User
 username!: string | null;
-//logged! : boolean;
 role: string |null ='';
 
 messageReceived: any;

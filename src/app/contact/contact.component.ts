@@ -19,10 +19,8 @@ export class ContactComponent {
   onSubmit() {
     this.emailService.sendEmail(this.formData.email, this.formData.subject, this.formData.message)
       .subscribe(() => {
-        // El correo electrónico se envió correctamente
-        console.log('Correo electrónico enviado');
+
       }, (error) => {
-        // Ocurrió un error al enviar el correo electrónico
         console.error('Error al enviar el correo electrónico', error);
       });
     

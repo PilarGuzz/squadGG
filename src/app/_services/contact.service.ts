@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ContactService {
 
-  //URL: string = 'http://localhost:8081/contact'
   URL: string = environment.apiUrl + '/contact'
 
   constructor(private http: HttpClient) { }

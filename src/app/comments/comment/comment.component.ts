@@ -62,7 +62,6 @@ export class CommentComponent implements OnInit {
       (params) => {
         this.gamename = params['name'];
 
-        //this.id = params['id'];
         swalert.fire({
           title: '¿Estás seguro que quieres eliminarlo?',
           showDenyButton: true,
@@ -70,14 +69,11 @@ export class CommentComponent implements OnInit {
           confirmButtonText: 'Sí',
           denyButtonText: `No`,
         }).then((result: { isConfirmed: any; isDenied: any; }) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
 
             this.commServ.deletePost(id, this.gamename)
               .subscribe({
                 next: (resp) => {
-                  console.log(resp);
-
                   swalert.fire('Eliminado!', '', 'success')
 
                   this.reload.emit('Este dato viajará hacia el padre');
