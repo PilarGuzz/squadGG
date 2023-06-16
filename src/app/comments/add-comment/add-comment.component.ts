@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CommentService } from '../../_services/comment.service';
 
@@ -17,7 +17,8 @@ export class AddCommentComponent implements OnInit {
   gamename: string = ''
   username: string | null = localStorage.getItem('user')
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private commServ: CommentService, private authSrv: AuthService) { }
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private commServ: CommentService, 
+    private router: Router, private authSrv: AuthService) { }
 
   myForm!: FormGroup;
 
@@ -53,6 +54,7 @@ export class AddCommentComponent implements OnInit {
             title: 'Post creado!',
             text: 'El post fue creado exitosamente!',
           });
+          this.router.navigate(['/game/'+this.gamename+'/posts'])
         },
         error: (err) => {
           console.log(err);
